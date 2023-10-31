@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TopMenuBar from "../Template/TopMenuBar";
 
-import '../Template/App.css';
+//import '../Template/App.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';

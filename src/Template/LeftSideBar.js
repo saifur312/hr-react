@@ -9,6 +9,8 @@ import Login from '../html/Login';
 import LoginVerification from '../html/LoginVerification';
 import PasswordReset from '../html/PasswordReset';
 
+import "./../App.css";
+
 const LeftSidebar = () => {
 
     return (
@@ -22,7 +24,7 @@ const LeftSidebar = () => {
         //         <li> <a href="#"> Test 5 </a> </li>
         //     </ul>
         // </aside>
-            <aside>
+            <aside className="sidebar-left">
                 <nav>
                     <ul>
                         <li>

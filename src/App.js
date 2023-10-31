@@ -23,6 +23,7 @@ import LeftSidebar from './Template/LeftSideBar';
 import RightSideBar from './Template/RightSideBar';
 import Footer from './Template/Footer';
 import './App.css';
+import AddDepartment from './html/department/AddDepartment';
 
 
 
@@ -54,7 +55,7 @@ function App() {
         <LeftSidebar />
     </div>
     <div className="Sidebar-right">
-        {/* <RightSideBar /> */}
+        <RightSideBar />
     </div>
     <div className="Container">
         {/* <h1> Our code will be in this section</h1> */}
@@ -72,6 +73,7 @@ function App() {
             <Route path="/Inquire employee" element={<EmployeeList/>} />
             <Route path="/Add new employee" element={<AddEmployee/>} />
             <Route path="/Update account" element={<UpdateEmployee/>} />
+            <Route path="/Add Department" element={<AddDepartment/>} />
             
                 {/* <Login/>
             </Route> */}
@@ -80,7 +82,7 @@ function App() {
     <div className="Footer">
         <Footer />
     </div>
-</div>
+  </div>
   );
 }
 

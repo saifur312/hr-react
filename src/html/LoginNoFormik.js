@@ -7,11 +7,11 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {useNavigate, useParams, generatePath} from 'react-router-dom';
+import { useNavigate, useParams, generatePath } from 'react-router-dom';
 
 
 
-function LoginNoFormik () {
+function LoginNoFormik() {
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState("");
@@ -29,13 +29,13 @@ function LoginNoFormik () {
                 method: "POST",
                 body: JSON.stringify({
                     userId: userId,
-                    password : password,
+                    password: password,
                 }),
                 headers: {
                     "Content-Type": "application/json"
                 }
             }).then(r => r);
-            
+
             //console.log("Test Response " + await res.text());
 
             // if (res.status === 200) {
@@ -47,9 +47,9 @@ function LoginNoFormik () {
 
             isValid = await res.text();
             console.log("Valid user " + isValid);
-            if(isValid === 'true')
+            if (isValid === 'true')
                 navigate("/verify-login/" + userId);
-            else   
+            else
                 setMessage("User Id and Password does not matched !!");
         } catch (err) {
             console.log(err);
@@ -58,64 +58,75 @@ function LoginNoFormik () {
         //navigate('/verify-login');
         //userId && navigate(generatePath("/verify-login/:code", { userId }));
         //navigate("/verify-login/" + userId);
-       // navigate(`/verify-login/${userId}`);
+        // navigate(`/verify-login/${userId}`);
 
-        
+
     };
 
 
 
     return (
-        <Container>
+        //     <Container>
 
-            <Container>
-                <Row className="justify-content-md-center mt-4" >
-                    {/* <Col sm={1}>sm=8</Col> */}
-                    <Col md={6}>
-                        {/* <Form noValidate validated={validated} onSubmit={handleSubmit}> */}
-                        <Form onSubmit={handleSubmit}
-                            action="employee-login"
-                            method="POST"
-                        >
-                            <Form.Group className="mb-3" controlId="userId">
-                                <Form.Label > User Id :</Form.Label>
-                                <Form.Control type="text" placeholder="Enter user Id" 
-                                    value={userId}
-                                    onChange={(event) => setUserId(event.target.value)}
-                                />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="password">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password"
-                                    value={password}
-                                    onChange={(event) => setPassword(event.target.value)}
-                                />
-                            </Form.Group>
-
-                            <Row>
-                                <Col md={6}>
-                                    <Button className="justify-content-md-start " variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                </Col>
-
-                                <Col md={6}>
-                                    <Button className="justify-content-md-end" variant="primary" type="submit">
-                                        Forgot Password
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </Form>
-                        
-                        <div style={{color: "red"}}> {message} </div>
-
-                    </Col>
-                </Row>
-            </Container>
+        //         <Container>
+        <Row className="justify-content-md-center m-4" >
+            {/* <Col sm={1}>sm=8</Col> */}
+            <Col md={6}>
+                {/* <Form noValidate validated={validated} onSubmit={handleSubmit}> */}
 
 
-        </Container>
+                <Form onSubmit={handleSubmit}
+                    action="employee-login"
+                    method="POST"
+                    style={{ backgroundColor: "#323234", color: "#fff" }}
+                >
+                    <Form.Group as={Row} className="p-4" controlId="userId">
+                        <Form.Label column sm={4}> User Id :</Form.Label>
+                        <Col sm={8}>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter user Id"
+                                value={userId}
+                                onChange={(event) => setUserId(event.target.value)}
+                            />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} className="p-4" controlId="password">
+                        <Form.Label column sm={4}>Password :</Form.Label>
+                        <Col sm={8}>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                            />
+                        </Col>
+                    </Form.Group>
+
+                    <Row>
+                        <Col md={6}>
+                            <Button className="justify-content-md-start m-4" variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Col>
+
+                        <Col md={6}>
+                            <Button className="justify-content-md-end m-4" variant="primary" type="submit">
+                                Forgot Password
+                            </Button>
+                        </Col>
+                    </Row>
+                </Form>
+
+                <div style={{ color: "red" }}> {message} </div>
+                
+            </Col>
+        </Row>
+        //     </Container>
+
+
+        // </Container>
     );
 }
 

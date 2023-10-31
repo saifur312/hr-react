@@ -5,6 +5,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Col, Row } from 'react-bootstrap';
 
+
+import './../App.css';
+
 const TopMenuBar = (props) => {
     // const currentDateTime = React.useState({
     //      new Date().toLocaleString(),
@@ -18,11 +21,11 @@ const TopMenuBar = (props) => {
         <Navbar expand="lg" bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand href="#">Gen-001</Navbar.Brand>
-                <Nav >
+                {/* <Nav >
+                </Nav> */}
+                <Nav className="me-auto">
                     <Nav.Link href="#">Sign On </Nav.Link>
-                </Nav>
-                <Nav >
-                    <Nav.Link href="#"><Clock /> </Nav.Link>
+                    <Nav.Link href="#"><Clock/> </Nav.Link>
                 </Nav>
                 {/* <Row lg={12}>
                     <Col md={4}> Gen-001 </Col>
@@ -33,6 +36,20 @@ const TopMenuBar = (props) => {
                 </Row> */}
             </Container>
         </Navbar>
+
+        
+//     <Navbar expand="lg" className="bg-body-tertiary">
+//     <Container>
+//       <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+//       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+//       <Navbar.Collapse id="basic-navbar-nav">
+//         <Nav className="me-auto">
+//           <Nav.Link href="#home">Home</Nav.Link>
+//           <Nav.Link href="#link">Link</Nav.Link>
+//         </Nav>
+//       </Navbar.Collapse>
+//     </Container>
+//   </Navbar>
 
 
         // <nav className="Navbar-top">  

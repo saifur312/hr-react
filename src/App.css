@@ -44,20 +44,47 @@
 
 /** left sidebar **/
 .Sidebar-left{
-    width: 10%;
+    width: 15%;
     border-right: 1px solid #eee;
-    background-color: #cfdddf;
+    /* background-color: #cfdddf; */
     float: left;
-    color: rgb(29, 21, 21);
+    /* color: rgb(29, 21, 21); */
+    background-color: #5C636A;
+    font-size: 1.2rem;
 }
 
 /** right sidebar **/
 .Sidebar-right{
-    width: 8%;
+    width: 15%;
     border-left: 1px solid #eee;
-    background-color: #c8e0fc;
+    /* background-color: #c8e0fc; */
+    background-color: #5C636A;
     float: right;
-    color: rgb(12, 12, 27);
+    /* color: rgb(12, 12, 27); */
+    font-size: 1.2rem;
+    /* padding-top: 15px; */
+}
+
+.Sidebar-left nav ul, .Sidebar-right nav ul{
+  /* top | right | bottom | left */
+  padding: 5px 0 0 0;
+}
+
+.Sidebar-left nav ul li, .Sidebar-right nav ul li{
+  list-style-type: none;
+  /* padding-bottom: 5px; */
+  /* top | right | bottom | left */
+  padding: 5px 0 5px 15px;
+}
+
+.Sidebar-left nav ul li:hover, .Sidebar-right nav ul li:hover{
+  background-color: #686d72;
+}
+
+.Sidebar-left nav ul a, .Sidebar-right nav ul li a{
+  text-decoration: none;
+  color:#fff;
+  /* padding-left: 15px; */
 }
 
 /** top navbar **/
@@ -87,8 +114,9 @@
 
 /** container **/
 .Container{
-    width: 80%;
+    width: 70%;
     float: left;
     text-align: center;
+    margin-bottom: 15px;
 
 }
