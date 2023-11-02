@@ -11,7 +11,7 @@ import { useNavigate, useParams, generatePath } from 'react-router-dom';
 function AddSection() {
 
 
-    const [sectionId, setSectionId] = useState('');    
+    const [sectionId, setSectionId] = useState('');
     const [departmentId, setDepartmentId] = useState('');
     const [sectionName, setSectionName] = useState('');
     const [serail, setSerail] = useState('');
@@ -34,6 +34,15 @@ function AddSection() {
         //setMenu(await response.json());
         console.log("Fetched " + data);
     }
+
+    //const handleChange = e => onchange(e.target.value);
+    // const departments = department.map((dept) =>
+    //     <option
+    //         value={dept.departmentId}
+    //     >
+    //         {dept.departmentId}
+    //     </option>
+    // )
 
     let handleSubmit = async (event) => {
         event.preventDefault();
@@ -90,7 +99,7 @@ function AddSection() {
                             </div>
                         </div>
                         <div class="form-group row col-lg-12 mt-4">
-                            <label for="departmentId" class="col-form-label col-lg-4">
+                            <label htmlFor="departmentId" class="col-form-label col-lg-4">
                                 <span class="float-left">Department Name</span>
                                 <span class="float-right">:</span>
                             </label>
@@ -99,9 +108,17 @@ function AddSection() {
                                     class="form-control chosen-select"
                                     id="departmentId"
                                     name="departmentId"
+                                    onChange={(event) => setDepartmentId(event.target.value)}
                                 >
                                     <option >Select One</option>
-                                    <option ></option>
+                                    {/* <option >Select One</option>
+                                    <option ></option> */}
+                                    {/* {departments} */}
+                                    {department.map((dept) => (
+                                        <option value={dept.departmentId}>
+                                            {dept.departmentName}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                         </div>
