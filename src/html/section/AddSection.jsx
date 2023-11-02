@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import './../../App.css';
 import Button from 'react-bootstrap/Button';
@@ -8,31 +8,42 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate, useParams, generatePath } from 'react-router-dom';
 
-function AddDepartment() {
+function AddSection() {
 
 
+    const [sectionId, setSectionId] = useState('');    
     const [departmentId, setDepartmentId] = useState('');
-    const [departmentName, setDepartmentName] = useState('');
-    const [description, setDescription] = useState('');
-    const [responsibilty, setResponsibilty] = useState('');
-    const [managerName, setManagerName] = useState('');
-    const [totalEmployee, setTotalEmployee] = useState('');
+    const [sectionName, setSectionName] = useState('');
+    const [serail, setSerail] = useState('');
     const [message, setMessage] = useState("");
+    const [department, setDepartment] = useState([]);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        departmentList()
+    }, [])
+
+    const departmentList = async () => {
+        const response = await fetch("http://localhost:8080/dept-list");
+
+        console.log("Content Type " + response.headers);
+
+        const data = await response.json();
+        setDepartment(data);
+        //setMenu(await response.json());
+        console.log("Fetched " + data);
+    }
 
     let handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            let res = await fetch("http://localhost:8080/department-add-save", {
+            let res = await fetch("http://localhost:8080/section-add-save", {
                 method: "POST",
                 body: JSON.stringify({
                     departmentId: departmentId,
-                    departmentName: departmentName,
-                    description: description,
-                    responsibilty: responsibilty,
-                    managerName: managerName,
-                    totalEmployee: totalEmployee,
+                    sectionName: sectionName,
+                    serail: serail,
 
                 }),
                 headers: {
@@ -40,7 +51,7 @@ function AddDepartment() {
                 }
             }).then(r => r);
 
-            navigate("/Add Department");
+            navigate("/Add Section");
 
         } catch (err) {
             console.log(err);
@@ -53,7 +64,7 @@ function AddDepartment() {
             {/* <Col sm={1}>sm=8</Col> */}
             <Col md={10}>
                 <form onSubmit={handleSubmit}
-                    action="department-add-save"
+                    action="section-add-save"
                     method="POST"
                     className="card-body label"
                     style={{
@@ -64,153 +75,65 @@ function AddDepartment() {
                     <div className="row" >
 
                         <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="departmentId" className="col-form-label col-lg-4">
-                                <span className="float-left">Department Id</span>
+                            <label htmlFor="sectionId" className="col-form-label col-lg-4">
+                                <span className="float-left">Section Id</span>
                                 <span className="float-right">:</span>
                             </label>
                             <div className="col-lg-6">
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="departmentId"
-                                    name="departmentId"
+                                    id="sectionId"
+                                    name="sectionId"
                                     readOnly={true}>
                                 </input>
                             </div>
                         </div>
+                        <div class="form-group row col-lg-12 mt-4">
+                            <label for="departmentId" class="col-form-label col-lg-4">
+                                <span class="float-left">Department Name</span>
+                                <span class="float-right">:</span>
+                            </label>
+                            <div class="col-lg-6">
+                                <select
+                                    class="form-control chosen-select"
+                                    id="departmentId"
+                                    name="departmentId"
+                                >
+                                    <option >Select One</option>
+                                    <option ></option>
+                                </select>
+                            </div>
+                        </div>
                         <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="departmentName" className="col-form-label col-lg-4">
-                                <span className="float-left">Department Name</span>
+                            <label htmlFor="sectionName" className="col-form-label col-lg-4">
+                                <span className="float-left">Section Name</span>
                                 <span className="float-right">:</span>
                             </label>
                             <div className="col-lg-6">
                                 <input
                                     type="text"
-                                    id="departmentName"
-                                    name="departmentName"
+                                    id="sectionName"
+                                    name="sectionName"
                                     className="form-control"
-                                    value={departmentName}
-                                    onChange={(event) => setDepartmentName(event.target.value)}>
-                                </input>
-                            </div>
-                        </div>
-                        <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="description" className="col-form-label col-lg-4">
-                                <span className="float-left">Description</span>
-                                <span className="float-right">:</span>
-                            </label>
-                            <div className="col-lg-6">
-                                <input
-                                    type="text"
-                                    id="description"
-                                    name="description"
-                                    className="form-control"
-                                    value={description}
-                                    onChange={(event) => setDescription(event.target.value)}>
-                                </input>
-                            </div>
-                        </div>
-
-                        <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="responsibilty" className="col-form-label col-lg-4">
-                                <span className="float-left">Responsibility</span>
-                                <span className="float-right">:</span> </label>
-                            <div className="col-lg-6">
-                                <input
-                                    type="text"
-                                    id="responsibilty"
-                                    name="responsibilty"
-                                    className="form-control"
-                                    value={responsibilty}
-                                    onChange={(event) => setResponsibilty(event.target.value)}>
-                                </input>
-                            </div>
-                        </div>
-                        <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="managerName" className="col-form-label col-lg-4">
-                                <span className="float-left">Manager Name</span>
-                                <span className="float-right">:</span>
-                            </label>
-                            <div className="col-lg-6">
-                                <input
-                                    type="text"
-                                    id="managerName"
-                                    name="managerName"
-                                    className="form-control"
-                                    value={managerName}
-                                    onChange={(event) => setManagerName(event.target.value)}>
-                                </input>
-                            </div>
-                        </div>
-                        <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="totalEmployee" className="col-form-label col-lg-4">
-                                <span className="float-left">No of Employee</span>
-                                <span className="float-right">:</span>
-                            </label>
-                            <div className="col-lg-6">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="totalEmployee"
-                                    name="totalEmployee"
-                                    value={totalEmployee}
-                                    onChange={(event) => setTotalEmployee(event.target.value)}>
-                                </input>
-                            </div>
-                        </div>
-                        <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="addressId" className="col-form-label col-lg-4">
-                                <span className="float-left">Address Id</span>
-                                <span className="float-right">:</span>
-                            </label>
-                            <div className="col-lg-6">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id=""
-                                    name="">
-                                </input>
-                            </div>
-                        </div>
-                        <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="startDateStr" className="col-form-label col-lg-4">
-                                <span className="float-left">Department Start Date</span>
-                                <span className="float-right">:</span>
-                            </label>
-                            <div className="col-lg-6">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id=""
-                                    name="">
-                                </input>
-                            </div>
-                        </div>
-                        <div className="form-group row col-lg-12 mt-4">
-                            <label htmlFor="endDateStr" className="col-form-label col-lg-4">
-                                <span className="float-left">Department End Date</span>
-                                <span className="float-right">:</span>
-                            </label>
-                            <div className="col-lg-6">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id=""
-                                    name="">
+                                    value={sectionName}
+                                    onChange={(event) => setSectionName(event.target.value)}>
                                 </input>
                             </div>
                         </div>
                         <div className="form-group row col-lg-12 mt-4">
                             <label htmlFor="serail" className="col-form-label col-lg-4">
-                                <span className="float-left">Department Serial</span>
+                                <span className="float-left">Section Serial</span>
                                 <span className="float-right">:</span>
                             </label>
                             <div className="col-lg-6">
                                 <input
                                     type="text"
-                                    id=""
-                                    name=""
-                                    className="form-control">
+                                    id="serail"
+                                    name="serail"
+                                    className="form-control"
+                                    value={serail}
+                                    onChange={(event) => setSerail(event.target.value)}>
                                 </input>
                             </div>
                         </div>
@@ -311,4 +234,4 @@ function AddDepartment() {
 
 }
 
-export default AddDepartment;
+export default AddSection;

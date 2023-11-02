@@ -24,6 +24,8 @@ import RightSideBar from './Template/RightSideBar';
 import Footer from './Template/Footer';
 import './App.css';
 import AddDepartment from './html/department/AddDepartment';
+import DepartmentList from './html/department/DepartmentList';
+import AddSection from './html/section/AddSection';
 
 
 
@@ -74,6 +76,9 @@ function App() {
             <Route path="/Add new employee" element={<AddEmployee/>} />
             <Route path="/Update account" element={<UpdateEmployee/>} />
             <Route path="/Add Department" element={<AddDepartment/>} />
+            <Route path="/DepartmentList" element={<DepartmentList/>} />
+            <Route path="/Add Section" element={<AddSection/>} />
+            {/* <Route path="/SectionList" element={<SectionList/>} /> */}
             
                 {/* <Login/>
             </Route> */}

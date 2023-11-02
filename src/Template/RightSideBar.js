@@ -25,19 +25,19 @@ const RightSideBar = () => {
                         <Link to="/Add Department">Add Department </Link>
                     </li>
                     <li>
-                        <Link to="/Department List">Department List </Link>
+                        <Link to="/DepartmentList">Department List </Link>
                     </li>
                     <li>
                         <Link to="/Add Section">Add Section </Link>
                     </li>
                     <li>
-                        <Link to="/Section List">Section List </Link>
+                        <Link to="/SectionList">Section List </Link>
                     </li>
                     <li>
                         <Link to="/Add Allowance">Add Allowance </Link>
                     </li>
                     <li>
-                        <Link to="/Allowance List">Allowance List </Link>
+                        <Link to="/AllowanceList">Allowance List </Link>
                     </li>
                     <li>
                         <Link to="/Add Loan">Add Loan </Link>
