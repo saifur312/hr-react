@@ -19,23 +19,35 @@ function DepartmentList(){
     }, [])
 
     const departmentList = async () => {
-        const response = await fetch("http://localhost:8080/dept-list");
+        //const response = await fetch("http://localhost:8080/dept-list");
+        fetch("http://localhost:8080/dept-list")
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                return new Promise([])
+            }
+        })
+        .then(data => setDepartment(data))
+        .catch(err => {
+            console.log(err)
+        })
+        
+        // console.log("Content Type " + response.headers);
 
-        console.log("Content Type " + response.headers);
-
-        const data = await response.json();
-        setDepartment(data);
-        //setMenu(await response.json());
-        console.log("Fetched " + data);
+        // const data = await response.json();
+        // setDepartment(data);
+        // //setMenu(await response.json());
+        // console.log("Fetched " + data);
     }
 
     return(
 
-        <div class="col-12 card bg-light mx-auto" style={{ padding: "5% 10%" }}>
-            <div class="form-group row col-lg-12">
-                <table width="100%" border="1" class="table table-bordered table-hover table-borderless">
-                    <tbody class="text-center">
-                        <tr class="table-header">
+        <div className="col-12 card bg-light mx-auto" style={{padding: "3% 8%", marginTop:"6px"}}>
+            <div className="form-group row col-lg-12">
+                <table width="100%" className="table table-hover table-borderless">
+                    <tbody className="text-center">
+                        <tr className="table-header">
                             <th scope="col">SL</th>
                             <th scope="col">Name</th>
                             <th scope="col">Desc.</th>
@@ -44,11 +56,11 @@ function DepartmentList(){
                             <th scope="col">Total Employee</th>
                         </tr>
 
-                        {department.map((department) => {
+                        {department.map((department, index) => {
                             return (
 
                                 <tr >
-                                    <td>  </td>
+                                <td> {index +1}  </td>
                                     <td> {department.departmentName} </td>
                                     <td> {department.description}  </td>
                                     <td> {department.responsibilty} </td>
@@ -57,7 +69,6 @@ function DepartmentList(){
                                 </tr>
                             )
                         })}
-
 
                     </tbody>
                 </table>
