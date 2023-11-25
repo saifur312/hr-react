@@ -105,7 +105,7 @@ function AddSection() {
                             </label>
                             <div class="col-lg-6">
                                 <select
-                                    class="form-control chosen-select"
+                                    class="form-control "
                                     id="departmentId"
                                     name="departmentId"
                                     onChange={(event) => setDepartmentId(event.target.value)}
