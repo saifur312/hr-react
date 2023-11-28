@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import './../../App.css';
 import Button from 'react-bootstrap/Button';
@@ -7,6 +7,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate, useParams, generatePath } from 'react-router-dom';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import { format } from 'date-fns';
+
 
 function AddDepartment() {
 
@@ -18,8 +24,31 @@ function AddDepartment() {
     const [managerName, setManagerName] = useState('');
     const [totalEmployee, setTotalEmployee] = useState('');
     const [message, setMessage] = useState("");
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const navigate = useNavigate();
+
+    // const handleDateChange = (date) => {
+    //     // Extract only the date part (YYYY-MM-DD) from the selected date
+    //     const formattedDate = date.toISOString().split('T')[0];
+
+    //     // Now you can submit the formattedDate to your backend server
+    //     console.log('formattedDate date:', formattedDate);
+
+    //     setSelectedDate(formattedDate);
+    //     //setSelectedDate(formattedDate);
+    //     console.log('selectedDate: ', selectedDate);
+    // };
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date); // Set the selectedDate directly without formatting
+        console.log('selectedDate: ', selectedDate);
+    };
+
+    const formatDate = (date) => {
+        return format(date, 'dd/MM/yyyy', { awareOfUnicodeTokens: true });
+    };
+
 
     let handleSubmit = async (event) => {
         event.preventDefault();
@@ -33,7 +62,7 @@ function AddDepartment() {
                     responsibilty: responsibilty,
                     managerName: managerName,
                     totalEmployee: totalEmployee,
-
+                    startDate: formatDate(selectedDate), // Format the date before submission
                 }),
                 headers: {
                     "Content-Type": "application/json"
@@ -178,12 +207,13 @@ function AddDepartment() {
                                 <span className="float-right">:</span>
                             </label>
                             <div className="col-lg-6">
-                                <input
+                                {/* <input
                                     type="text"
                                     className="form-control"
                                     id=""
                                     name="">
-                                </input>
+                                </input> */}
+                                <DatePicker selected={selectedDate} onChange={handleDateChange} />
                             </div>
                         </div>
                         <div className="form-group row col-lg-12 mt-4">

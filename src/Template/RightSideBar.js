@@ -16,7 +16,7 @@ const RightSideBar = () => {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/Add new employee">Add Employee</Link>
+                        <Link to="/Add employee">Add Employee</Link>
                     </li>
                     <li>
                         <Link to="/Inquire employee">Inquire employee</Link>

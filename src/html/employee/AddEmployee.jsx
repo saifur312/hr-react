@@ -7,7 +7,20 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate, useParams, generatePath } from 'react-router-dom';
-import { DatePicker } from "@mui/x-date-pickers";
+
+//import { DatePicker } from "@mui/x-date-pickers";
+// import dayjs from "dayjs";
+// import utc from 'dayjs/plugin/utc';
+// import timezone from 'dayjs/plugin/timezone';
+
+// dayjs.extend(utc);
+// dayjs.extend(timezone);
+// dayjs.tz.setDefault('Asia/Dhaka');
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import { format, parseISO } from 'date-fns';
 
 function AddEmployee() {
 
@@ -32,7 +45,8 @@ function AddEmployee() {
     const [promotionDateStr, setPromotionDateStr] = useState('');
     const [retiermentDateStr, setRetiermentDateStr] = useState('');
     const [pfID, setPfID] = useState('');
-    const [pfJoinDateStr, setPfJoinDateStr] = useState('');
+    const [pfJoinDateStr, setPfJoinDateStr] = useState(''); 
+    const [finalSettleDateStr, setFinalSettleDateStr] = useState(''); 
     const [nationality, setNationality] = useState('');
     const [emergencyContact, setEmergencyContact] = useState('');
     const [bloodGroup, setBloodGroup] = useState('');
@@ -41,10 +55,11 @@ function AddEmployee() {
     const [grade, setGrade] = useState('');
     const [status, setStatus] = useState('');
     const [leaveBalance, setLeaveBalance] = useState('');
+    const [ageYear, setAgeYear] = useState('');
     const [message, setMessage] = useState("");
 
     const [department, setDepartment] = useState([]);
-    const [section, setSection] = useState([]);
+    const [sections, setSections] = useState([]);
 
     const navigate = useNavigate();
 
@@ -61,28 +76,142 @@ function AddEmployee() {
         setDepartment(data);
         //setMenu(await response.json());
         console.log("Fetched " + data);
+        console.log("department " + department);
     }
+
+    let sectionList = async () => {
+        console.log("SectionList function call success...!!  " + departmentId);
+        // const response = await fetch("http://localhost:8080/section-list-deptarmentwise/" + departmentId);
+
+        // console.log("Content Type " + response.headers);
+
+        // const data = await response.json();
+        // setSections(data);
+
+        let res = await fetch("http://localhost:8080/section-list-deptarmentwise", {
+            method: "POST",
+            body: JSON.stringify({
+                departmentId: departmentId,
+
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    return new Promise([])
+                }
+            })
+            .then(data => setSections(data));
+    }
+
+    function getAge() {
+        console.log("From Datepicker " + appliacationDateStr);
+        var today = new Date();
+        var birthDate = new Date(appliacationDateStr);
+        console.log("JS Date " + birthDate);
+        setDobStr(birthDate);
+
+
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        setAgeYear(age + "y");
+        //return age;
+        console.log("Age " + age);
+    }
+
+    // function testDate(){
+    //     setAppliacationDateStr(event);
+    //     console.log("From DP " + appliacationDateStr);
+    // }
+
+    const formatDateString = (date) => {
+        return date.toISOString().split('T')[0];
+        // const formattedDate = date.toISOString().split('T')[0];
+        // setSelectedDate(formattedDate);
+    };
+
+    const formatDate = (date) => {
+        //const parsedDate = parseISO(dobStr);
+
+        //return format(date, 'dd/MM/yyyy', { awareOfUnicodeTokens: true });
+        const formattedDate = format(date, 'dd-MM-yyyy', { awareOfUnicodeTokens: true });
+        return formattedDate.toString();
+
+        // // Split the date string into components
+        // if (typeof dateString === 'string') {
+        //     console.log(true);
+        // }else{
+        //     console.log(false);
+        // }
+        // const components = dobStr.split(' ');
+
+        // // Extract the day, month, and year components
+        // const day = components[2];
+        // const month = components[1];
+        // const year = components[3];
+
+        // // Construct a new date string in a format that can be parsed
+        // const formattedDateString = `${day} ${month} ${year}`;
+        // // Format the constructed date string
+        // return format(new Date(formattedDateString), 'dd/MM/yyyy', { awareOfUnicodeTokens: true });
+    };
 
     let handleSubmit = async (event) => {
         event.preventDefault();
+        console.log("before parsing " + dobStr, appliacationDateStr);
         try {
-            // let res = await fetch("http://localhost:8080/department-add-save", {
-            //     method: "POST",
-            //     body: JSON.stringify({
-            //         departmentId: departmentId,
-            //         departmentName: departmentName,
-            //         description: description,
-            //         responsibilty: responsibilty,
-            //         managerName: managerName,
-            //         totalEmployee: totalEmployee,
+            let res = await fetch("http://localhost:8080/employee-add-save", {
+                method: "POST",
+                body: JSON.stringify({
+                    //employeeId: employeeId,
+                    NID: NID,
+                    fingerId: fingerId,
+                    fullName: fullName,
+                    nickName: nickName,
+                    departmentId: departmentId,
+                    sectionId: sectionId,
+                    gender: gender,
+                    religion: religion,
+                    mobileNo: mobileNo,
+                    email: email,
+                    tin: tin,
+                    //dobStr: dobStr, 
+                    dobStr: formatDate(dobStr),
+                    //appliacationDateStr: appliacationDateStr,
+                    appliacationDateStr: formatDate(appliacationDateStr),
+                    interviewDateStr: formatDate(interviewDateStr),
+                    confirmDateStr: formatDate(confirmDateStr),
+                    joinDateStr: formatDate(joinDateStr),
+                    incrementDateStr: formatDate(incrementDateStr),
+                    promotionDateStr: formatDate(promotionDateStr),
+                    retiermentDateStr: formatDate(retiermentDateStr),
+                    finalSettleDateStr: formatDate(finalSettleDateStr),
+                    pfID: pfID,
+                    pfJoinDateStr: formatDate(pfJoinDateStr),
+                    nationality: nationality,
+                    emergencyContact: emergencyContact,
+                    bloodGroup: bloodGroup,
+                    maritalStatus: maritalStatus,
+                    basicSalary: basicSalary,
+                    grade: grade,
+                    status: status,
+                    leaveBalance: leaveBalance
 
-            //     }),
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     }
-            // }).then(r => r);
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(r => r);
 
-            navigate("/Add Employee");
+            console.log("After parsing " + dobStr, appliacationDateStr);
+            navigate("/Add employee");
 
         } catch (err) {
             console.log(err);
@@ -95,8 +224,9 @@ function AddEmployee() {
         <Row className="justify-content-md-center m-4" >
             {/* <Col sm={1}>sm=8</Col> */}
             <Col md={10}>
+
                 <form onSubmit={handleSubmit}
-                    action="department-add-save"
+                    action="employee-add-save"
                     method="POST"
                     className="card-body label"
                     style={{
@@ -146,10 +276,11 @@ function AddEmployee() {
                                     type="text"
                                     className="form-control"
                                     required="required"
-                                    id=""
-                                    name=""
+                                    id="fingerId"
+                                    name="fingerId"
                                     value={fingerId}
-                                    onChange={(event) => setFingerId(event.target.value)}></input>
+                                    onChange={(event) => setFingerId(event.target.value)}>
+                                </input>
                             </div>
                         </div>
                         <div className="form-group row col-lg-12 mt-4">
@@ -165,7 +296,8 @@ function AddEmployee() {
                                     id="fullName"
                                     name="fullName"
                                     value={fullName}
-                                    onChange={(event) => setFullName(event.target.value)}></input>
+                                    onChange={(event) => setFullName(event.target.value)}>
+                                </input>
                             </div>
                         </div>
                         <div className="form-group row col-lg-12 mt-4">
@@ -205,11 +337,15 @@ function AddEmployee() {
                                     className="form-control"
                                     id="departmentId"
                                     name="departmentId"
-                                    onChange={(event) => setDepartmentId(event.target.value)}
+                                    onChange={(event) => {
+                                        setDepartmentId(event.target.value);
+                                        sectionList()
+                                    }
+                                    }
                                 >
                                     <option value="0">Select One</option>
                                     {department.map((dept) => (
-                                        <option value={dept.departmentId}>
+                                        <option key={dept.departmentId} value={dept.departmentId}>
                                             {dept.departmentName}
                                         </option>
                                     ))}
@@ -229,7 +365,11 @@ function AddEmployee() {
                                     onChange={(event) => setSectionId(event.target.value)}
                                 >
                                     <option value="0">Select One</option>
-                                    <option> </option>
+                                    {sections.map((section) => (
+                                        <option value={section.sectionId}>
+                                            {section.sectionName}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                         </div>
@@ -343,12 +483,37 @@ function AddEmployee() {
                             </label>
                             <div className="col-lg-4">
                                 {/* <DatePicker className="form-control"/> */}
+                                {/* <DatePicker
+                                    className="col-lg-12 form-control"
+                                    id="dobStr"
+                                    name="dobStr"
+                                    value={dobStr}
+                                    // dateFormat="dd-MM-yyyy"
+                                    timezone="Asia/Dhaka"
+                                    // onChange={(event) => setDobStr(event.target.value)}
+                                    onChange={(date) => setDobStr(date)}
+                                // onChange={(dateEvent) => {
+                                //     setDobStr(dateEvent);
+                                //     getAge()
+                                //     }
+                                // }
+                                /> */}
+
                                 <DatePicker
                                     className="form-control"
                                     id="dobStr"
                                     name="dobStr"
-                                    value={dobStr}
-                                    onChange={(event) => setDobStr(event.target.value)}
+                                    dateFormat="dd-MM-yyyy"
+                                    // value={dobStr}
+                                    selected={dobStr}
+                                    //onChange={(date) => setDobStr(date)}
+
+                                    onChange={(date) => {
+                                        // console.log(date);
+                                        // console.log(date.toISOString());
+                                        // console.log(date.toISOString().slice(0, 10));
+                                        setDobStr(date);
+                                    }}
                                 />
                             </div>
                             <div className="row col-lg-4" >
@@ -357,13 +522,13 @@ function AddEmployee() {
                                     <span className="float-right">:</span>
                                 </label> */}
                                 <div className="col-lg-4" style={{ padding: "0px" }}>
-                                    <input type="text" className="form-control" placeholder="00y" readonly="readonly"></input>
+                                    <input type="text" className="form-control" id="ageYear" placeholder="00y" readOnly="readOnly" ></input>
+                                </div>  {/*  value={ageYear} */}
+                                <div className="col-lg-4" style={{ padding: "0px" }}>
+                                    <input type="text" className="form-control" id="ageMonth" placeholder="00m" readOnly="readOnly"></input>
                                 </div>
                                 <div className="col-lg-4" style={{ padding: "0px" }}>
-                                    <input type="text" className="form-control" placeholder="00m" readonly="readonly"></input>
-                                </div>
-                                <div className="col-lg-4" style={{ padding: "0px" }}>
-                                    <input type="text" className="form-control" placeholder="00d" readonly="readonly"></input>
+                                    <input type="text" className="form-control" id="ageDay" placeholder="00d" readOnly="readOnly"></input>
                                 </div>
                             </div>
                         </div>
@@ -380,18 +545,39 @@ function AddEmployee() {
                                     readOnly={true}></input>
                             </div>
                         </div> */}
+
                         <div className="form-group row col-lg-12 mt-4">
                             <label htmlFor="appliacationDateStr" className="col-form-label col-lg-4">
                                 <span className="float-left">Application Date</span>
                                 <span className="float-right">:</span>
                             </label>
                             <div className="col-lg-6">
-                                <DatePicker
-                                    className="form-control"
+                                {/* <DatePicker
+                                    className="col-lg-12 form-control"
                                     id="appliacationDateStr"
                                     name="appliacationDateStr"
+                                    //value={dayjs(appliacationDateStr)}
                                     value={appliacationDateStr}
-                                    onChange={(event) => setAppliacationDateStr(event.target.value)}
+                                    //defaultValue={dayjs(Date.now())}
+                                    // dateFormat="dd-MM-yyyy" 
+                                    // onChange={(event) => {
+                                    //     setAppliacationDateStr(event);
+                                    //     getAge();
+                                    //     }
+                                    // }
+
+                                    onChange={(event) => setAppliacationDateStr(event)}
+                                //onChange={testDate()}
+                                /> */}
+
+                                <DatePicker
+                                    className="form-control"
+                                    popperClassName="col-lg-12"
+                                    id="appliacationDateStr"
+                                    name="appliacationDateStr"
+                                    dateFormat="dd-MM-yyyy"
+                                    selected={appliacationDateStr}
+                                    onChange={(date) => setAppliacationDateStr(date)}
                                 />
                             </div>
                         </div>
@@ -405,8 +591,9 @@ function AddEmployee() {
                                     className="form-control"
                                     id="interviewDateStr"
                                     name="interviewDateStr"
-                                    value={interviewDateStr}
-                                    onChange={(event) => setInterviewDateStr(event.target.value)}
+                                    selected={interviewDateStr}
+                                     dateFormat="dd-MM-yyyy"
+                                    onChange={(event) => setInterviewDateStr(event)}
                                 />
                             </div>
                         </div>
@@ -417,11 +604,12 @@ function AddEmployee() {
                             </label>
                             <div className="col-lg-6">
                                 <DatePicker
-                                    className="form-control"
+                                    className="col-lg-12 form-control"
                                     id="confirmDateStr"
                                     name="confirmDateStr"
-                                    value={confirmDateStr}
-                                    onChange={(event) => setConfirmDateStr(event.target.value)}
+                                    selected={confirmDateStr}
+                                     dateFormat="dd-MM-yyyy"
+                                    onChange={(dateEvent) => setConfirmDateStr(dateEvent)}
                                 />
                             </div>
                         </div>
@@ -432,11 +620,12 @@ function AddEmployee() {
                             </label>
                             <div className="col-lg-6">
                                 <DatePicker
-                                    className="form-control"
+                                    className="col-lg-12 form-control"
                                     id="joinDateStr"
                                     name="joinDateStr"
-                                    value={joinDateStr}
-                                    onChange={(event) => setJoinDateStr(event.target.value)}
+                                    selected={joinDateStr}
+                                     dateFormat="dd-MM-yyyy"
+                                    onChange={(dateEvent) => setJoinDateStr(dateEvent)}
                                 />
                             </div>
                         </div>
@@ -447,11 +636,12 @@ function AddEmployee() {
                             </label>
                             <div className="col-lg-6">
                                 <DatePicker
-                                    className="form-control"
+                                    className="col-lg-12 form-control"
                                     id="incrementDateStr"
                                     name="incrementDateStr"
-                                    value={incrementDateStr}
-                                    onChange={(event) => setIncrementDateStr(event.target.value)}
+                                    selected={incrementDateStr}
+                                     dateFormat="dd-MM-yyyy"
+                                    onChange={(dateEvent) => setIncrementDateStr(dateEvent)}
                                 />
                             </div>
                         </div>
@@ -462,11 +652,12 @@ function AddEmployee() {
                             </label>
                             <div className="col-lg-6">
                                 <DatePicker
-                                    className="form-control"
+                                    className="col-lg-12 form-control"
                                     id="promotionDateStr"
                                     name="promotionDateStr"
-                                    value={promotionDateStr}
-                                    onChange={(event) => setPromotionDateStr(event.target.value)}
+                                    selected={promotionDateStr}
+                                     dateFormat="dd-MM-yyyy"
+                                    onChange={(dateEvent) => setPromotionDateStr(dateEvent)}
                                 />
                             </div>
                         </div>
@@ -477,11 +668,12 @@ function AddEmployee() {
                             </label>
                             <div className="col-lg-6">
                                 <DatePicker
-                                    className="form-control"
+                                    className="col-lg-12 form-control"
                                     id="retiermentDateStr"
                                     name="retiermentDateStr"
-                                    value={retiermentDateStr}
-                                    onChange={(event) => setRetiermentDateStr(event.target.value)}
+                                    selected={retiermentDateStr}
+                                     dateFormat="dd-MM-yyyy"
+                                    onChange={(dateEvent) => setRetiermentDateStr(dateEvent)}
                                 />
                             </div>
                         </div>
@@ -505,17 +697,18 @@ function AddEmployee() {
                                 <span className="float-right">:</span>
                             </label>
                             <div className="col-lg-6">
-                                {/* <DatePicker className="form-control"/> */}
+
                                 <DatePicker
-                                    className="form-control"
+                                    className="col-lg-12 form-control"
                                     id="pfJoinDateStr"
                                     name="pfJoinDateStr"
-                                    value={pfJoinDateStr}
-                                    onChange={(event) => setPfJoinDateStr(event.target.value)}
+                                    selected={pfJoinDateStr}
+                                     dateFormat="dd-MM-yyyy"
+                                    onChange={(dateEvent) => setPfJoinDateStr(dateEvent)}
                                 />
                             </div>
                         </div>
-                        {/* <div className="form-group row col-lg-12 mt-4">
+                        <div className="form-group row col-lg-12 mt-4">
                             <label htmlFor="finalSettleDateStr" className="col-form-label col-lg-4">
                                 <span className="float-left">Final Settle Date</span>
                                 <span className="float-right">:</span>
@@ -523,13 +716,12 @@ function AddEmployee() {
                             <div className="col-lg-6">
                                 <DatePicker 
                                     className="form-control" 
-                                    id=""
-                                    name=""
-                                    value={}
-                                    onChange={(event) => set(event.target.value)}
+                                    id="finalSettleDateStr"
+                                    name="finalSettleDateStr" 
+                                    onChange={(event) => setFinalSettleDateStr(event)}
                                 />
                             </div>
-                        </div> */}
+                        </div>
                         <div className="form-group row col-lg-12 mt-4">
                             <label htmlFor="status" className="col-form-label col-lg-4">
                                 <span className="float-left">Status</span>

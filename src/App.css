@@ -120,3 +120,8 @@
     margin-bottom: 15px;
 
 }
+
+.react-datepicker-wrapper {
+  width: 100%; /* Adjust the width as needed */
+  max-width: 100%; /* Adjust the max-width as needed */
+}

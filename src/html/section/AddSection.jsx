@@ -98,14 +98,14 @@ function AddSection() {
                                 </input>
                             </div>
                         </div>
-                        <div class="form-group row col-lg-12 mt-4">
-                            <label htmlFor="departmentId" class="col-form-label col-lg-4">
-                                <span class="float-left">Department Name</span>
-                                <span class="float-right">:</span>
+                        <div className="form-group row col-lg-12 mt-4">
+                            <label htmlFor="departmentId" className="col-form-label col-lg-4">
+                                <span className="float-left">Department Name</span>
+                                <span className="float-right">:</span>
                             </label>
-                            <div class="col-lg-6">
+                            <div className="col-lg-6" >
                                 <select
-                                    class="form-control "
+                                    className="form-control "
                                     id="departmentId"
                                     name="departmentId"
                                     onChange={(event) => setDepartmentId(event.target.value)}
@@ -115,7 +115,7 @@ function AddSection() {
                                     <option ></option> */}
                                     {/* {departments} */}
                                     {department.map((dept) => (
-                                        <option value={dept.departmentId}>
+                                        <option key={dept.departmentId} value={dept.departmentId}>
                                             {dept.departmentName}
                                         </option>
                                     ))}

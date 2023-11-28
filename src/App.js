@@ -30,6 +30,7 @@ import SectionList from './html/section/SectionList';
 
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import EmployeeDetails from './html/employee/EmployeeDetails';
 
 
 
@@ -79,7 +80,8 @@ function App() {
                         <Route path="/profile/:id" element={<Employee />} />
                         <Route path="/Add new account" element={<AddEmployee />} />
                         <Route path="/Inquire employee" element={<EmployeeList />} />
-                        <Route path="/Add new employee" element={<AddEmployee />} />
+                        <Route path="/Employee details" element={<EmployeeDetails />} />
+                        <Route path="/Add employee" element={<AddEmployee />} />
                         <Route path="/Update account" element={<UpdateEmployee />} />
                         <Route path="/Add Department" element={<AddDepartment />} />
                         <Route path="/DepartmentList" element={<DepartmentList />} />
