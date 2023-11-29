@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
 import './../../App.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useNavigate, useParams, generatePath } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -17,14 +14,14 @@ import { format } from 'date-fns';
 function AddDepartment() {
 
 
-    const [departmentId, setDepartmentId] = useState('');
+    //const [departmentId, setDepartmentId] = useState('');
     const [departmentName, setDepartmentName] = useState('');
     const [description, setDescription] = useState('');
     const [responsibilty, setResponsibilty] = useState('');
     const [managerName, setManagerName] = useState('');
     const [totalEmployee, setTotalEmployee] = useState('');
-    const [message, setMessage] = useState("");
     const [selectedDate, setSelectedDate] = useState(new Date());
+    //const [message, setMessage] = useState("");
 
     const navigate = useNavigate();
 
@@ -53,10 +50,10 @@ function AddDepartment() {
     let handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            let res = await fetch("http://localhost:8080/department-add-save", {
+            //let res = await fetch("http://localhost:8080/department-add-save", {
+            await fetch("http://localhost:8080/department-add-save", {
                 method: "POST",
                 body: JSON.stringify({
-                    departmentId: departmentId,
                     departmentName: departmentName,
                     description: description,
                     responsibilty: responsibilty,
@@ -76,6 +73,7 @@ function AddDepartment() {
         }
 
     };
+
     return (
 
         <Row className="justify-content-md-center m-4" >
@@ -321,12 +319,11 @@ function AddDepartment() {
                             </div>
                         </div>
                         <div className="form-group col-lg-12 text-center mt-lg-4" >
-                            <a
-                                href="#"
+                            <button
                                 className="btn btn-danger btn-lg col-lg-2 mr-5 col-sm-5 col-xs-3"
-                                role="button">
+                            >
                                 Cancel
-                            </a>
+                            </button>
                             <button
                                 className="btn btn-success btn-lg col-lg-2 col-sm-5 col-xs-3"
                                 type="submit">

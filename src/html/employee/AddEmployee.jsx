@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import './../../App.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useNavigate, useParams, generatePath } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 //import { DatePicker } from "@mui/x-date-pickers";
 // import dayjs from "dayjs";
@@ -20,11 +17,11 @@ import { useNavigate, useParams, generatePath } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 
 function AddEmployee() {
 
-    const [employeeId, setEmployeeId] = useState('');
+    //const [employeeId, setEmployeeId] = useState('');
     const [NID, setNID] = useState('');
     const [fingerId, setFingerId] = useState('');
     const [fullName, setFullName] = useState('');
@@ -55,8 +52,8 @@ function AddEmployee() {
     const [grade, setGrade] = useState('');
     const [status, setStatus] = useState('');
     const [leaveBalance, setLeaveBalance] = useState('');
-    const [ageYear, setAgeYear] = useState('');
-    const [message, setMessage] = useState("");
+    //const [ageYear, setAgeYear] = useState('');
+    //const [message, setMessage] = useState("");
 
     const [department, setDepartment] = useState([]);
     const [sections, setSections] = useState([]);
@@ -64,20 +61,20 @@ function AddEmployee() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const departmentList = async () => {
+            const response = await fetch("http://localhost:8080/dept-list");
+    
+            console.log("Content Type " + response.headers);
+    
+            const data = await response.json();
+            setDepartment(data);
+            //setMenu(await response.json());
+            console.log("Fetched " + data);
+        }
         departmentList()
-    }, [])
+    }, [setDepartment])
 
-    const departmentList = async () => {
-        const response = await fetch("http://localhost:8080/dept-list");
 
-        console.log("Content Type " + response.headers);
-
-        const data = await response.json();
-        setDepartment(data);
-        //setMenu(await response.json());
-        console.log("Fetched " + data);
-        console.log("department " + department);
-    }
 
     let sectionList = async () => {
         console.log("SectionList function call success...!!  " + departmentId);
@@ -88,7 +85,7 @@ function AddEmployee() {
         // const data = await response.json();
         // setSections(data);
 
-        let res = await fetch("http://localhost:8080/section-list-deptarmentwise", {
+        await fetch("http://localhost:8080/section-list-deptarmentwise", {
             method: "POST",
             body: JSON.stringify({
                 departmentId: departmentId,
@@ -108,34 +105,34 @@ function AddEmployee() {
             .then(data => setSections(data));
     }
 
-    function getAge() {
-        console.log("From Datepicker " + appliacationDateStr);
-        var today = new Date();
-        var birthDate = new Date(appliacationDateStr);
-        console.log("JS Date " + birthDate);
-        setDobStr(birthDate);
+    // function getAge() {
+    //     console.log("From Datepicker " + appliacationDateStr);
+    //     var today = new Date();
+    //     var birthDate = new Date(appliacationDateStr);
+    //     console.log("JS Date " + birthDate);
+    //     setDobStr(birthDate);
 
 
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        setAgeYear(age + "y");
-        //return age;
-        console.log("Age " + age);
-    }
+    //     var age = today.getFullYear() - birthDate.getFullYear();
+    //     var m = today.getMonth() - birthDate.getMonth();
+    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    //         age--;
+    //     }
+    //     setAgeYear(age + "y");
+    //     //return age;
+    //     console.log("Age " + age);
+    // }
 
     // function testDate(){
     //     setAppliacationDateStr(event);
     //     console.log("From DP " + appliacationDateStr);
     // }
 
-    const formatDateString = (date) => {
-        return date.toISOString().split('T')[0];
-        // const formattedDate = date.toISOString().split('T')[0];
-        // setSelectedDate(formattedDate);
-    };
+    // const formatDateString = (date) => {
+    //     return date.toISOString().split('T')[0];
+    //     // const formattedDate = date.toISOString().split('T')[0];
+    //     // setSelectedDate(formattedDate);
+    // };
 
     const formatDate = (date) => {
         //const parsedDate = parseISO(dobStr);
@@ -167,7 +164,7 @@ function AddEmployee() {
         event.preventDefault();
         console.log("before parsing " + dobStr, appliacationDateStr);
         try {
-            let res = await fetch("http://localhost:8080/employee-add-save", {
+            await fetch("http://localhost:8080/employee-add-save", {
                 method: "POST",
                 body: JSON.stringify({
                     //employeeId: employeeId,
@@ -931,12 +928,11 @@ function AddEmployee() {
                             </div>
                         </div>
                         <div className="form-group col-lg-12 text-center mt-lg-4" >
-                            <a
-                                href="#"
+                            <button
                                 className="btn btn-danger btn-lg col-lg-2 mr-5 col-sm-5 col-xs-3"
-                                role="button">
+                            >
                                 Cancel
-                            </a>
+                            </button>
                             <button
                                 className="btn btn-success btn-lg col-lg-2 col-sm-5 col-xs-3"
                                 type="submit">

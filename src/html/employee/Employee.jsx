@@ -16,17 +16,18 @@ function Employee() {
     const params = useParams();
 
     useEffect( () => {
+        const menus = async() => {
+            const response = await fetch("http://localhost:8080/user-menu-list?userId=" + params.id);
+    
+            // const data = await response.json();
+            // setMenu(data.data);
+            setMenu(await response.json());
+            console.log("Fetched " + response.json);
+        }
         menus()
-    }, [])
+    }, [params.id, setMenu])
 
-    const menus = async() => {
-        const response = await fetch("http://localhost:8080/user-menu-list?userId=" + params.id);
 
-        // const data = await response.json();
-        // setMenu(data.data);
-        setMenu(await response.json());
-        console.log("Fetched " + response.json);
-    }
 
     console.log("Menus " + menu);
 

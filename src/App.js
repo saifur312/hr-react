@@ -4,13 +4,11 @@
 import React from 'react';
 
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
     Routes, //previous Switch 
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 import Login from './html/Login';
-import Login_NoFormik from './html/LoginNoFormik';
 import LoginVerification from './html/LoginVerification';
 import PasswordReset from './html/PasswordReset';
 import Employee from './html/employee/Employee';
@@ -31,6 +29,10 @@ import SectionList from './html/section/SectionList';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import EmployeeDetails from './html/employee/EmployeeDetails';
+import AddBankInfo from './html/bank info/AddBankInfo';
+import BankInfoList from './html/bank info/BankInfoList';
+import AllowanceList from './html/allowance/AllowanceList';
+import LoginNoFormik from './html/LoginNoFormik';
 
 
 
@@ -76,9 +78,9 @@ function App() {
             </Route> */}
                         <Route path="/forgot-password" element={<PasswordReset />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/" element={<Login_NoFormik />} />
+                        <Route path="/" element={<LoginNoFormik />} />
                         <Route path="/profile/:id" element={<Employee />} />
-                        <Route path="/Add new account" element={<AddEmployee />} />
+                        {/* <Route path="/Add new account" element={<AddEmployee />} /> */}
                         <Route path="/Inquire employee" element={<EmployeeList />} />
                         <Route path="/Employee details" element={<EmployeeDetails />} />
                         <Route path="/Add employee" element={<AddEmployee />} />
@@ -87,6 +89,10 @@ function App() {
                         <Route path="/DepartmentList" element={<DepartmentList />} />
                         <Route path="/Add Section" element={<AddSection />} />
                         <Route path="/SectionList" element={<SectionList />} />
+                        <Route path="/Add Bank info" element={<AddBankInfo />} />
+                        <Route path="/Bank info List" element={<BankInfoList />} />
+                        {/* <Route path="/Add Allowance " element={< />} /> */}
+                        <Route path="/Allowance List" element={<AllowanceList/>} />
 
                         {/* <Login/>
             </Route> */}

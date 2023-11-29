@@ -2,40 +2,36 @@ import React, { useEffect, useState } from "react";
 
 
 import './../../App.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import { useNavigate, useParams } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 function SectionList() {
 
     const [section, setSection] = useState([]);
-    const navigate = useNavigate();
-    const params = useParams();
+    //const navigate = useNavigate();
 
     useEffect(() => {
+        const sectionList = async () => {
+            // const response = await fetch("http://localhost:8080/section-list");
+            fetch("http://localhost:8080/section-list")
+                .then(response => {
+                    if (response.ok) {
+                        //setSection(response.json())
+                        response.json()
+                            .then(data => setSection(data))
+                    }
+                })
+    
+            // console.log("Content Type " + response.headers);
+    
+            // const data = await response.json();
+            // setDepartment(data);
+            // //setMenu(await response.json());
+            // console.log("Fetched " + data);
+        }
         sectionList()
-    }, [])
+    }, [setSection])
 
-    const sectionList = async () => {
-        // const response = await fetch("http://localhost:8080/section-list");
-        fetch("http://localhost:8080/section-list")
-            .then(response => {
-                if (response.ok) {
-                    //setSection(response.json())
-                    response.json()
-                        .then(data => setSection(data))
-                }
-            })
 
-        // console.log("Content Type " + response.headers);
-
-        // const data = await response.json();
-        // setDepartment(data);
-        // //setMenu(await response.json());
-        // console.log("Fetched " + data);
-    }
 
     return (
 
@@ -52,7 +48,7 @@ function SectionList() {
 
                         {section.map((sec, index) => {
                             return (
-                                <tr >
+                                <tr key={sec.sectionId}>
                                     <td> {index +1}  </td>
                                     <td> {sec.sectionName}  </td>
                                     <td> {sec.departmentName} </td>
@@ -60,8 +56,6 @@ function SectionList() {
                                 </tr>
                             )
                         })}
-
-
                     </tbody>
                 </table>
             </div>

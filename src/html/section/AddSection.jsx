@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import './../../App.css';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useNavigate, useParams, generatePath } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function AddSection() {
 
 
-    const [sectionId, setSectionId] = useState('');
+    //const [sectionId, setSectionId] = useState('');
     const [departmentId, setDepartmentId] = useState('');
     const [sectionName, setSectionName] = useState('');
     const [serail, setSerail] = useState('');
-    const [message, setMessage] = useState("");
+    //const [message, setMessage] = useState("");
     const [department, setDepartment] = useState([]);
 
     const navigate = useNavigate();
@@ -47,7 +44,7 @@ function AddSection() {
     let handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            let res = await fetch("http://localhost:8080/section-add-save", {
+            await fetch("http://localhost:8080/section-add-save", {
                 method: "POST",
                 body: JSON.stringify({
                     departmentId: departmentId,
@@ -70,7 +67,6 @@ function AddSection() {
     return (
 
         <Row className="justify-content-md-center m-4" >
-            {/* <Col sm={1}>sm=8</Col> */}
             <Col md={10}>
                 <form onSubmit={handleSubmit}
                     action="section-add-save"
@@ -231,12 +227,11 @@ function AddSection() {
                             </div>
                         </div>
                         <div className="form-group col-lg-12 text-center mt-lg-4" >
-                            <a
-                                href="#"
+                            <button
                                 className="btn btn-danger btn-lg col-lg-2 mr-5 col-sm-5 col-xs-3"
-                                role="button">
+                            >
                                 Cancel
-                            </a>
+                            </button>
                             <button
                                 className="btn btn-success btn-lg col-lg-2 col-sm-5 col-xs-3"
                                 type="submit">

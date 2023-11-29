@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-
 import './../../App.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import EmployeeDetails from "./EmployeeDetails";
 import EmployeeModal from "./EmployeeModal";
 
 
@@ -17,17 +11,13 @@ function EmployeeList() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedData, setSelectedData] = useState(null);
 
-    const [menu, setMenu] = useState([]);
     const [employees, setEmployees] = useState([]);
     const navigate = useNavigate();
-    const params = useParams();
 
     useEffect(() => {
-        employeeList()
-    }, [])
-
+        
     const employeeList = async () => {
-        const response = await fetch("http://localhost:8080/empliyee-list-react");
+        const response = await fetch("http://localhost:8080/employee-list");
 
         console.log("Content Type " + response.headers);
 
@@ -35,6 +25,9 @@ function EmployeeList() {
         setEmployees(data);
         console.log("Fetched " + data);
     }
+        employeeList()
+    }, [setEmployees])
+
 
     // const handleClick = (emp) => {
     //     // Access menu item details here
@@ -105,15 +98,15 @@ function EmployeeList() {
 
 
     return (
-        <div class="col-12 card bg-light mx-auto" style={{ paddingTop: "10px"}}>
-            <form class="form-group row col-lg-12" action="#" method="post">
-                <div class="form-group row col-lg-12 mt-4">
-                    <label for="religion" class="col-form-label col-lg-3"><b>
-                        <span class="float-left">Find Employee By</span>
-                        <span class="float-right">:</span></b>
+        <div className="col-12 card bg-light mx-auto" style={{ paddingTop: "10px"}}>
+            <form className="form-group row col-lg-12" action="#" method="post">
+                <div className="form-group row col-lg-12 mt-4">
+                    <label htmlFor="religion" className="col-form-label col-lg-3"><b>
+                        <span className="float-left">Find Employee By</span>
+                        <span className="float-right">:</span></b>
                     </label>
-                    <div class="col-lg-7">
-                        <select class="form-control" name="findBy"
+                    <div className="col-lg-7">
+                        <select className="form-control" name="findBy"
                             required="required">
                             <option value="Name" 		> Name         </option>
                             <option value="NickName" 	> Nick Name     </option>
@@ -124,17 +117,17 @@ function EmployeeList() {
                     </div>
                 </div>
 
-                <div class="form-group row col-lg-12">
-                    <label for="findByValue" class="col-form-label col-lg-3"><b>
-                        <span class="float-left" id="findByValueLabel">Enter any Name</span>
-                        <span class="float-right">:</span> </b>
+                <div className="form-group row col-lg-12">
+                    <label htmlFor="findByValue" className="col-form-label col-lg-3"><b>
+                        <span className="float-left" id="findByValueLabel">Enter any Name</span>
+                        <span className="float-right">:</span> </b>
                     </label>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" id="findByValue" name="findByValue"
+                    <div className="col-lg-6">
+                        <input type="text" className="form-control" id="findByValue" name="findByValue"
                             placeholder="Enter some character of Name" required="required"></input>
                     </div>
-                    <div class="col-lg-2">
-                        <button type="submit" class="btn btn-success btn-lg col-lg-12">Search </button>
+                    <div className="col-lg-2">
+                        <button type="submit" className="btn btn-success btn-lg col-lg-12">Search </button>
                     </div>
 
                 </div>
@@ -143,8 +136,8 @@ function EmployeeList() {
 
             <div className="col-12 card bg-light mx-auto">
                 <table width="100%" className="table table-hover table-borderless">
-                    <tbody class="text-center">
-                        <tr class="table-header">
+                    <tbody className="text-center">
+                        <tr className="table-header">
                             <th scope="col">SL</th>
                             <th scope="col">Employee ID</th>
                             <th scope="col">NID</th>
@@ -191,7 +184,7 @@ function EmployeeList() {
                                             DetailsHere
                                         </button>
                                     </td> */}
-                                    <td> <a class="btn btn-info btn-sm" >Select ID</a></td>
+                                    <td> <button href="#" className="btn btn-info btn-sm" >Select ID</button></td>
                                 </tr>
                             )
                         })}
