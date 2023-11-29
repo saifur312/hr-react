@@ -1,29 +1,32 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 import './../../App.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { format } from 'date-fns';
 
+// import { useHistory } from 'react-router-dom';
+
 
 function AddDepartment() {
 
+    // const history = useHistory();
+    const navigate = useNavigate();
 
     //const [departmentId, setDepartmentId] = useState('');
     const [departmentName, setDepartmentName] = useState('');
     const [description, setDescription] = useState('');
-    const [responsibilty, setResponsibilty] = useState('');
+    const [responsibilty, setResponsibility] = useState('');
     const [managerName, setManagerName] = useState('');
     const [totalEmployee, setTotalEmployee] = useState('');
     const [selectedDate, setSelectedDate] = useState(new Date());
-    //const [message, setMessage] = useState("");
-
-    const navigate = useNavigate();
+    const [successMessage, setSuccessMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     // const handleDateChange = (date) => {
     //     // Extract only the date part (YYYY-MM-DD) from the selected date
@@ -51,7 +54,7 @@ function AddDepartment() {
         event.preventDefault();
         try {
             //let res = await fetch("http://localhost:8080/department-add-save", {
-            await fetch("http://localhost:8080/department-add-save", {
+            const response = await fetch("http://localhost:8080/department-add-save", {
                 method: "POST",
                 body: JSON.stringify({
                     departmentName: departmentName,
@@ -59,14 +62,41 @@ function AddDepartment() {
                     responsibilty: responsibilty,
                     managerName: managerName,
                     totalEmployee: totalEmployee,
-                    startDate: formatDate(selectedDate), // Format the date before submission
+                    //startDate: formatDate(selectedDate), // Format the date before submission
                 }),
                 headers: {
                     "Content-Type": "application/json"
                 }
             }).then(r => r);
 
-            navigate("/Add Department");
+            //navigate("/Add Department");
+            if (response.ok) {
+                setSuccessMessage('Department added successfully!');
+                // history.push("/Add Department");
+                // Redirect to the same URL
+                navigate("", { replace: true });
+            }
+            if (response.ok) {
+                setSuccessMessage('Department added successfully!');
+
+                // Set a loading state to indicate the redirection is in progress
+                setLoading(true);
+
+                // Use setTimeout to delay the navigation log
+                setTimeout(() => {
+                    console.log('Redirecting to the same URL...');
+                    navigate("", { replace: true });
+                    setLoading(false);
+                    // Reset the loading state after navigation
+                    // Reset form fields
+                    setDepartmentName('');
+                    setDescription('');
+                    setResponsibility('');
+                    setManagerName('');
+                    setTotalEmployee('');
+                    setSelectedDate(null);
+                }, 100);
+            }
 
         } catch (err) {
             console.log(err);
@@ -78,6 +108,7 @@ function AddDepartment() {
 
         <Row className="justify-content-md-center m-4" >
             {/* <Col sm={1}>sm=8</Col> */}
+            {successMessage && <h3 style={{ color: "green" }}>{successMessage}</h3>}
             <Col md={10}>
                 <form onSubmit={handleSubmit}
                     action="department-add-save"
@@ -149,7 +180,7 @@ function AddDepartment() {
                                     name="responsibilty"
                                     className="form-control"
                                     value={responsibilty}
-                                    onChange={(event) => setResponsibilty(event.target.value)}>
+                                    onChange={(event) => setResponsibility(event.target.value)}>
                                 </input>
                             </div>
                         </div>
@@ -205,12 +236,6 @@ function AddDepartment() {
                                 <span className="float-right">:</span>
                             </label>
                             <div className="col-lg-6">
-                                {/* <input
-                                    type="text"
-                                    className="form-control"
-                                    id=""
-                                    name="">
-                                </input> */}
                                 <DatePicker selected={selectedDate} onChange={handleDateChange} />
                             </div>
                         </div>
@@ -253,7 +278,7 @@ function AddDepartment() {
                                 </select>
                             </div>
                         </div>
-                        <div className="form-group row col-lg-12 mt-4">
+                        {/* <div className="form-group row col-lg-12 mt-4">
                             <label htmlFor="filler1" className="col-form-label col-lg-4">
                                 <span className="float-left">Filler-1</span>
                                 <span className="float-right">:</span> </label>
@@ -317,7 +342,7 @@ function AddDepartment() {
                                     name="">
                                 </input>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="form-group col-lg-12 text-center mt-lg-4" >
                             <button
                                 className="btn btn-danger btn-lg col-lg-2 mr-5 col-sm-5 col-xs-3"

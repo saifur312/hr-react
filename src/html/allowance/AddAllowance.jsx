@@ -159,7 +159,7 @@ function AddAllowance() {
                                     className="form-control"
                                     id="basic"
                                     name="basic"
-                                    required="basic"
+                                    required={true}
                                     onChange={(event) => setBasic(event.target.value)}
                                 />
                             </div>
