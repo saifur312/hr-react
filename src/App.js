@@ -33,6 +33,7 @@ import AddBankInfo from './html/bank info/AddBankInfo';
 import BankInfoList from './html/bank info/BankInfoList';
 import AllowanceList from './html/allowance/AllowanceList';
 import LoginNoFormik from './html/LoginNoFormik';
+import AddAllowance from './html/allowance/AddAllowance';
 
 
 
@@ -91,7 +92,7 @@ function App() {
                         <Route path="/SectionList" element={<SectionList />} />
                         <Route path="/Add Bank info" element={<AddBankInfo />} />
                         <Route path="/Bank info List" element={<BankInfoList />} />
-                        {/* <Route path="/Add Allowance " element={< />} /> */}
+                        <Route path="/Add Allowance" element={<AddAllowance/>} />
                         <Route path="/Allowance List" element={<AllowanceList/>} />
 
                         {/* <Login/>
