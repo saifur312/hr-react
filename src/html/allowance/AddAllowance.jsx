@@ -7,7 +7,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 
+import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
+// var Typeahead = require('react-bootstrap-typeahead').Typeahead; 
+
+// Import as a module in your JS
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+
 function AddAllowance() {
+    const [singleSelections, setSingleSelections] = useState([]);
+    //const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
 
     const [employees, setEmployees] = useState([]);
 
@@ -42,6 +50,19 @@ function AddAllowance() {
         fetchEmployees();
     }, [setEmployees]);
 
+    const handleSelectionChange = (selectedOptions) => {
+        if (selectedOptions.length > 0) {
+            // Assuming 'employeeId' is the property you want to submit
+            //setSelectedEmployeeId(selectedOptions[0].employeeId);
+            setEmployeeId(selectedOptions[0].employeeId);
+            setSingleSelections(selectedOptions);
+        } else {
+            //setSelectedEmployeeId(null);
+            setEmployeeId(null);
+            setSingleSelections([]);
+        }
+    };
+
     let handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -49,6 +70,7 @@ function AddAllowance() {
                 method: "POST",
                 body: JSON.stringify({
                     employeeId: employeeId,
+                    //employeeId: selectedEmployeeId,
                     allowanceId: allowanceId,
                     basic: basic,
                     houseRent: houseRent,
@@ -93,7 +115,7 @@ function AddAllowance() {
                     style={{ backgroundColor: "#323234", color: "#fff" }}
                 >
                     <div className="row" >
-                        <div className="form-group row col-lg-12 mt-4">
+                        {/* <div className="form-group row col-lg-12 mt-4">
                             <label htmlFor="employeeId" className="col-form-label col-lg-4">
                                 <span className="float-left">Employee ID </span>
                                 <span className="float-right">:</span>
@@ -113,7 +135,19 @@ function AddAllowance() {
                                     ))}
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
+
+                        <Form.Group className="row" >
+                            <Form.Label className="col-form-label col-lg-4">Employee ID:  </Form.Label>
+                            <Typeahead className="col-lg-6"
+                                id="basic-typeahead-single"
+                                labelKey="fullName"
+                                onChange={handleSelectionChange}
+                                options={employees}
+                                placeholder="Choose a state..."
+                                selected={singleSelections}
+                            />
+                        </Form.Group>
 
                         {/* <div className="form-group row col-lg-12 mt-4">
                             <label htmlFor="employeeId" className="col-form-label col-lg-4">
