@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const AddressList = () => {
   const [employees, setEmployees] = useState([]);
-  const [nominieeList, setNominieeList] = useState([]);
+  const [addressList, setAddressList] = useState([]);
   const [employeeId, setEmployeeId] = useState('');
 
   useEffect(() => {
@@ -24,12 +24,12 @@ const AddressList = () => {
     console.log('Employee Id ' + employeeId);
     try {
       const response = await fetch(
-        `http://localhost:8080/nominee-list?employeeId=${employeeId}`
+        `http://localhost:8080/address-list?employeeId=${employeeId}`
       );
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        setNominieeList(data);
+        setAddressList(data);
       } else {
         console.error(`Error: ${response.status} - ${response.statusText}`);
       }
@@ -82,27 +82,28 @@ const AddressList = () => {
               <th scope="col">Employee ID</th>
               <th scope="col">Address ID</th>
               <th scope="col">Type</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Relation</th>
-              <th scope="col">Contact</th>
-              <th scope="col">Email</th>
-              <th scope="col">DOB</th>
+              <th scope="col">division</th>
+              <th scope="col">district</th>
+              <th scope="col">subDistrict</th>
+              <th scope="col">city</th>
+              <th scope="col">village</th>
               {/* <th scope="col">Status</th> */}
             </tr>
 
-            {nominieeList &&
-              nominieeList.map((exp, index) => {
+            {addressList &&
+              addressList.map((address, index) => {
                 return (
-                  <tr key={exp.nomineeIdentity.employeeId}>
+                  <tr key={address.addressId}>
                     <td> {index + 1} </td>
-                    <td> {exp.nomineeIdentity.employeeId} </td>
-                    <td> {exp.nomineeIdentity.nomineeId} </td>
-                    <td> {exp.firstName} </td>
-                    <td> {exp.relation} </td>
-                    <td> {exp.contact} </td>
-                    <td> {exp.email} </td>
-                    <td> {exp.dob} </td>
-                    {/* <td> {exp.status} </td> */}
+                    <td> {address.employeeId} </td>
+                    <td> {address.addressId} </td>
+                    <td> {address.addressType} </td>
+                    <td> {address.division} </td>
+                    <td> {address.district} </td>
+                    <td> {address.subDistrict} </td>
+                    <td> {address.city} </td>
+                    <td> {address.village} </td>
+                    {/* <td> {address.status} </td> */}
                   </tr>
                 );
               })}

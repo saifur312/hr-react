@@ -51,6 +51,7 @@ import AddDependent from './html/dependent/AddDependent';
 import DependentList from './html/dependent/DependentList';
 import AddAddress from './html/address/AddAddress';
 import AddressList from './html/address/AddressList';
+import UpdateJobTitle from './html/job title/UpdateJobTitle';
 
 function App() {
   return (
@@ -110,6 +111,7 @@ function App() {
             <Route path="/Add Loan" element={<AddLoan />} />
             <Route path="/Loan List" element={<LoanList />} />
             <Route path="/Add Job Title" element={<AddJobTitle />} />
+            <Route path="/Update Job Title" element={<UpdateJobTitle />} />
             <Route path="/Job Title List" element={<JobTitleList />} />
             <Route path="/Add Overtime" element={<AddOvertime />} />
             <Route path="/Overtime List" element={<OvertimeList />} />

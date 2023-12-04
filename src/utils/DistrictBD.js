@@ -1,4 +1,4 @@
-export const districts = () => {
+export const allDistrict = () => {
   return [
     'Dhaka',
     'Faridpur',

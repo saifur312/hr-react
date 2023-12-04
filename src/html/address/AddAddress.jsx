@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './../../App.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
-import { districts } from '../../utils/District';
+import { allDistrict } from '../../utils/DistrictBD';
+import { allSubDistrict } from '../../utils/SubDistrict';
 
 function AddAddress() {
   const [employeeId, setEmployeeId] = useState('');
@@ -24,8 +25,9 @@ function AddAddress() {
   const [apartmentNo, setApartmentNo] = useState('');
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
-
+  const [employees, setEmployees] = useState('');
   const navigate = useNavigate();
+
   //const districtList = districts;
   const divisions = [
     'Dhaka',
@@ -37,6 +39,19 @@ function AddAddress() {
     'Mymensing',
     'Khulna',
   ];
+
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/employee-list`);
+        const data = await response.json();
+        setEmployees(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchEmployees();
+  }, [setEmployees]);
 
   let handleSubmit = async (event) => {
     event.preventDefault();
@@ -111,14 +126,20 @@ function AddAddress() {
                 <span className="float-right">:</span>
               </label>
               <div className="col-lg-6">
-                <input
-                  id=""
-                  name=""
-                  type="text"
+                <select
                   className="form-control"
-                  required="required"
+                  id="employeeId"
+                  name="employeeId"
                   onChange={(event) => setEmployeeId(event.target.value)}
-                />
+                >
+                  <option value="0">Select One</option>
+                  {employees &&
+                    employees.map((emp) => (
+                      <option key={emp.employeeId} value={emp.employeeId}>
+                        {emp.fullName}
+                      </option>
+                    ))}
+                </select>
               </div>
             </div>
 
@@ -151,6 +172,7 @@ function AddAddress() {
                   className="form-control"
                   onChange={(event) => setAddressType(event.target.value)}
                 >
+                  <option value="0">Select One</option>
                   <option value="Present">Present</option>
                   <option value="Permanent">Permanent</option>
                   <option value="Permanent">Both</option>
@@ -170,7 +192,7 @@ function AddAddress() {
                   onChange={(event) => setDivision(event.target.value)}
                 >
                   <option value="0">Select One</option>
-                  {divisions.map((div) => (
+                  {divisions.sort().map((div) => (
                     <option value={div}> {div} </option>
                   ))}
                 </select>
@@ -189,9 +211,11 @@ function AddAddress() {
                   onChange={(event) => setDistrict(event.target.value)}
                 >
                   <option value="0">Select One</option>
-                  {districts.map((distr) => (
-                    <option value={distr}> {distr} </option>
-                  ))}
+                  {allDistrict()
+                    .sort()
+                    .map((distr) => (
+                      <option value={distr}> {distr} </option>
+                    ))}
                 </select>
               </div>
             </div>
@@ -208,6 +232,11 @@ function AddAddress() {
                   onChange={(event) => setSubDistrict(event.target.value)}
                 >
                   <option value="0">Select One</option>
+                  {allSubDistrict()
+                    .sort()
+                    .map((subdist) => (
+                      <option value={subdist}>{subdist}</option>
+                    ))}
                 </select>
               </div>
             </div>
