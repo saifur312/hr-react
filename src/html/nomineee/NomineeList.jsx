@@ -59,11 +59,12 @@ const NomineeList = () => {
               onChange={(event) => setEmployeeId(event.target.value)}
             >
               <option value="0">Select One</option>
-              {employees.map((emp) => (
-                <option key={emp.employeeId} value={emp.employeeId}>
-                  {emp.fullName}
-                </option>
-              ))}
+              {employees &&
+                employees.map((emp) => (
+                  <option key={emp.employeeId} value={emp.employeeId}>
+                    {emp.fullName}
+                  </option>
+                ))}
             </select>
           </div>
 
