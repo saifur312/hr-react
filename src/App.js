@@ -1,4 +1,4 @@
-//import React from 'react';
+import React from 'react';
 
 import {
   // BrowserRouter as Router,
@@ -52,6 +52,8 @@ import DependentList from './html/dependent/DependentList';
 import AddAddress from './html/address/AddAddress';
 import AddressList from './html/address/AddressList';
 import UpdateJobTitle from './html/job title/UpdateJobTitle';
+import BarChart from './html/charts/BarChart';
+import LineChart from './html/charts/LineChart';
 
 function App() {
   return (
@@ -129,6 +131,8 @@ function App() {
             <Route path="/Dependent List" element={<DependentList />} />
             <Route path="/Add Address" element={<AddAddress />} />
             <Route path="/Address List" element={<AddressList />} />
+            <Route path="/Show Charts" element={<BarChart />} />
+            <Route path="/Show Line Charts" element={<LineChart />} />
 
             {/* <Login/>
             </Route> */}
