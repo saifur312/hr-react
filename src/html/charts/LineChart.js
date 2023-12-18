@@ -39,7 +39,7 @@ const LineChart = () => {
       }
     };
     fetchMonthlySalaryData();
-  }, [setMonthlySalaryData]);
+  }, [monthlySalaryData, setMonthlySalaryData]);
 
   const options = {
     responsive: true,

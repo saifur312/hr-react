@@ -13,7 +13,7 @@ function UpdateJobTitle() {
 
   // const [jobId, setJobId] = useState('');
   // const [title, setTitle] = useState('');
-  const [jobId, setJobId] = useState(data.jobId);
+  //const [jobId, setJobId] = useState(data.jobId);
   const [title, setTitle] = useState(data.title);
   const [description, setDescription] = useState(data.description);
   const [responsibilty, setResponsibility] = useState(data.responsibilty);
@@ -29,7 +29,7 @@ function UpdateJobTitle() {
         {
           method: 'POST',
           body: JSON.stringify({
-            jobId: jobId,
+            jobId: data.jobId,
             title: title,
             description: description,
             responsibilty: responsibilty,

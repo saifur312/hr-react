@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+//import { faker } from '@faker-js/faker';
 
 ChartJS.register(
   CategoryScale,
@@ -37,7 +37,7 @@ const BarChart = () => {
       }
     };
     fetchMonthlySalaryData();
-  }, [setMonthlySalaryData]);
+  }, [monthlySalaryData, setMonthlySalaryData]);
 
   const options = {
     responsive: true,

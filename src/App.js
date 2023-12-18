@@ -5,19 +5,15 @@ import {
   Routes, //previous Switch
   Route,
 } from 'react-router-dom';
-import Login from './html/Login';
 import LoginVerification from './html/LoginVerification';
-import PasswordReset from './html/PasswordReset';
 import Employee from './html/employee/Employee';
 import AddEmployee from './html/employee/AddEmployee';
 import EmployeeList from './html/employee/EployeeList';
-import UpdateEmployee from './html/employee/UpdateEmployee';
 
 import TopMenuBar from './Template/TopMenuBar';
 import LeftSidebar from './Template/LeftSideBar';
 import RightSideBar from './Template/RightSideBar';
 import Footer from './Template/Footer';
-import './App.css';
 import AddDepartment from './html/department/AddDepartment';
 import DepartmentList from './html/department/DepartmentList';
 import AddSection from './html/section/AddSection';
@@ -54,6 +50,11 @@ import AddressList from './html/address/AddressList';
 import UpdateJobTitle from './html/job title/UpdateJobTitle';
 import BarChart from './html/charts/BarChart';
 import LineChart from './html/charts/LineChart';
+import { AddSystem } from './html/menu/AddSystem';
+import { AddSubSystem } from './html/menu/AddSubSystem';
+import { AddFunction } from './html/menu/AddFunction';
+
+import './App.css';
 
 function App() {
   return (
@@ -93,15 +94,14 @@ function App() {
             {/* <Route path="/verify-login" element={<LoginVerification/>}/> */}
             {/* <LoginVerification/>
             </Route> */}
-            <Route path="/forgot-password" element={<PasswordReset />} />
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/forgot-password" element={<PasswordReset />} />
+            <Route path="/login" element={<Login />} /> */}
             <Route path="/" element={<LoginNoFormik />} />
             <Route path="/profile/:id" element={<Employee />} />
             {/* <Route path="/Add new account" element={<AddEmployee />} /> */}
             <Route path="/Inquire employee" element={<EmployeeList />} />
             <Route path="/Employee details" element={<EmployeeDetails />} />
             <Route path="/Add employee" element={<AddEmployee />} />
-            <Route path="/Update account" element={<UpdateEmployee />} />
             <Route path="/Add Department" element={<AddDepartment />} />
             <Route path="/DepartmentList" element={<DepartmentList />} />
             <Route path="/Add Section" element={<AddSection />} />
@@ -133,6 +133,9 @@ function App() {
             <Route path="/Address List" element={<AddressList />} />
             <Route path="/Show Charts" element={<BarChart />} />
             <Route path="/Show Line Charts" element={<LineChart />} />
+            <Route path="/AddSystem" element={<AddSystem />} />
+            <Route path="/AddSubSystem" element={<AddSubSystem />} />
+            <Route path="/AddFunction" element={<AddFunction />} />
 
             {/* <Login/>
             </Route> */}

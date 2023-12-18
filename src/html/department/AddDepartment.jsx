@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { format } from 'date-fns';
+//import { format } from 'date-fns';
 
 // import { useHistory } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ function AddDepartment() {
   const [totalEmployee, setTotalEmployee] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [successMessage, setSuccessMessage] = useState('');
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
 
   // const handleDateChange = (date) => {
   //     // Extract only the date part (YYYY-MM-DD) from the selected date
@@ -43,9 +43,9 @@ function AddDepartment() {
     console.log('selectedDate: ', selectedDate);
   };
 
-  const formatDate = (date) => {
-    return format(date, 'dd/MM/yyyy', { awareOfUnicodeTokens: true });
-  };
+  // const formatDate = (date) => {
+  //   return format(date, 'dd/MM/yyyy', { awareOfUnicodeTokens: true });
+  // };
 
   let handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,13 +80,13 @@ function AddDepartment() {
         setSuccessMessage('Department added successfully!');
 
         // Set a loading state to indicate the redirection is in progress
-        setLoading(true);
+        //setLoading(true);
 
         // Use setTimeout to delay the navigation log
         setTimeout(() => {
           console.log('Redirecting to the same URL...');
           navigate('', { replace: true });
-          setLoading(false);
+          //setLoading(false);
           // Reset the loading state after navigation
           // Reset form fields
           setDepartmentName('');

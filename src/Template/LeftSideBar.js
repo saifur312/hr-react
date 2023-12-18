@@ -19,16 +19,22 @@ const LeftSidebar = () => {
       <nav>
         <ul>
           <li>
-            {' '}
-            <Link to="/">Login</Link>{' '}
+            <Link to="/AddSystem">Add System</Link>
           </li>
           <li>
-            {' '}
-            <Link to="/verify-login">Verify Login</Link>{' '}
+            <Link to="/AddSubSystem">Add Sub System</Link>
           </li>
           <li>
-            {' '}
-            <Link to="/forgot-password">Forgot Password</Link>{' '}
+            <Link to="/AddFunction">Add Fucntion</Link>
+          </li>
+          <li>
+            <Link to="/">Login</Link>
+          </li>
+          <li>
+            <Link to="/verify-login">Verify Login</Link>
+          </li>
+          <li>
+            <Link to="/forgot-password">Forgot Password</Link>
           </li>
           <li>
             {' '}
