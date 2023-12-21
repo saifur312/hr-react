@@ -55,6 +55,7 @@ import { AddSubSystem } from './html/menu/AddSubSystem';
 import { AddFunction } from './html/menu/AddFunction';
 
 import './App.css';
+import OperatorFunction from './html/opfunc/OperatorFunction';
 
 function App() {
   return (
@@ -136,6 +137,7 @@ function App() {
             <Route path="/AddSystem" element={<AddSystem />} />
             <Route path="/AddSubSystem" element={<AddSubSystem />} />
             <Route path="/AddFunction" element={<AddFunction />} />
+            <Route path="/Operator Function" element={<OperatorFunction />} />
 
             {/* <Login/>
             </Route> */}

@@ -28,6 +28,9 @@ const LeftSidebar = () => {
             <Link to="/AddFunction">Add Fucntion</Link>
           </li>
           <li>
+            <Link to="/Operator Function">Operator Function</Link>
+          </li>
+          <li>
             <Link to="/">Login</Link>
           </li>
           <li>
@@ -37,68 +40,52 @@ const LeftSidebar = () => {
             <Link to="/forgot-password">Forgot Password</Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Add Job Title">Add Job Title </Link>{' '}
+            <Link to="/Add Job Title">Add Job Title </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Job Title List">Job Title List </Link>{' '}
+            <Link to="/Job Title List">Job Title List </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Add Address">Add Address </Link>{' '}
+            <Link to="/Add Address">Add Address </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Address List">Address List </Link>{' '}
+            <Link to="/Address List">Address List </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Add Dependent">Add Dependent </Link>{' '}
+            <Link to="/Add Dependent">Add Dependent </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Dependent List">Dependent List </Link>{' '}
+            <Link to="/Dependent List">Dependent List </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Add Nominee">Add Nominee </Link>{' '}
+            <Link to="/Add Nominee">Add Nominee </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Nominee List">Nominee List </Link>{' '}
+            <Link to="/Nominee List">Nominee List </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Add Experience">Add Experience </Link>{' '}
+            <Link to="/Add Experience">Add Experience </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Experience List">Experience List </Link>{' '}
+            <Link to="/Experience List">Experience List </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Add Education">Add Education </Link>{' '}
+            <Link to="/Add Education">Add Education </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Education List">Education List </Link>{' '}
+            <Link to="/Education List">Education List </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Add Leave">Add Leave </Link>{' '}
+            <Link to="/Add Leave">Add Leave </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Leave List">Leave List </Link>{' '}
+            <Link to="/Leave List">Leave List </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Show Charts">Show Charts </Link>{' '}
+            <Link to="/Show Charts">Show Charts </Link>
           </li>
           <li>
-            {' '}
-            <Link to="/Show Line Charts">Show Line Charts </Link>{' '}
+            <Link to="/Show Line Charts">Show Line Charts </Link>
           </li>
         </ul>
       </nav>
