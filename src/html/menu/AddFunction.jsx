@@ -108,12 +108,12 @@ export const AddFunction = () => {
           onSubmit={handleFormSubmit}
           method="POST"
           className="card-body label"
-          style={{
-            backgroundColor: '#323234',
-            color: '#fff',
-            paddingBottom: '30px',
-            marginBottom: '30px',
-          }}
+          // style={{
+          //   backgroundColor: '#323234',
+          //   color: '#fff',
+          //   paddingBottom: '30px',
+          //   marginBottom: '30px',
+          // }}
         >
           <div className="row">
             <div className="form-group row col-lg-12 mt-4">

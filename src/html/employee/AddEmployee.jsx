@@ -16,16 +16,16 @@ import { useNavigate } from 'react-router-dom';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useTitle } from '../../utils/TitleContext';
+//import { useTitle } from '../../utils/TitleContext';
 
 import { format } from 'date-fns';
 
 function AddEmployee() {
-  const { setComponentTitle } = useTitle();
   /*** set title in Top menu bar */
-  useEffect(() => {
-    setComponentTitle('Add Employee');
-  }, [setComponentTitle]);
+  //const { setComponentTitle } = useTitle();
+  // useEffect(() => {
+  //   setComponentTitle('Add Employee');
+  // }, [setComponentTitle]);
 
   //const [employeeId, setEmployeeId] = useState('');
   const [NID, setNID] = useState('');
@@ -366,7 +366,7 @@ function AddEmployee() {
                 >
                   <option value="0">Select One</option>
                   {sections.map((section) => (
-                    <option value={section.sectionId}>
+                    <option key={section.sectionId} value={section.sectionId}>
                       {section.sectionName}
                     </option>
                   ))}

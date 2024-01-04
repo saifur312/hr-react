@@ -3,12 +3,15 @@ import Clock from './Clock';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useTitle } from './../utils/TitleContext';
+//import { useTitle } from './../utils/TitleContext';
 
 import './../App.css';
+import { useAuthContext } from '../utils/AuthContext';
+import { Link } from 'react-router-dom';
 
 const TopMenuBar = () => {
-  const { title } = useTitle();
+  const { user, logout } = useAuthContext();
+  //const { title } = useTitle();
 
   // const currentDateTime = React.useState({
   //      new Date().toLocaleString(),
@@ -19,26 +22,59 @@ const TopMenuBar = () => {
   // }
 
   return (
-    <Navbar expand="lg" bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="#">{title || 'Gen-001'}</Navbar.Brand>
-        {/* <Nav >
-                </Nav> */}
-        <Nav className="me-auto">
-          <Nav.Link href="#">Sign On </Nav.Link>
-          <Nav.Link href="#">
-            <Clock />{' '}
-          </Nav.Link>
-        </Nav>
-        {/* <Row lg={12}>
-                    <Col md={4}> Gen-001 </Col>
-                    
-                    <Col md={4}> Sign On </Col>
-                    
-                    <Col md={4}><Clock /> </Col>
-                </Row> */}
-      </Container>
-    </Navbar>
+    <div className="top-nav">
+      <a className="active" href="#home">
+        Home
+      </a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      {/* {user && (
+        <a href="/" onClick={logout}>
+          Logout
+        </a>
+      )} */}
+      {user ? (
+        <a href="/" onClick={logout}>
+          Logout
+        </a>
+      ) : (
+        // <Link to="/" onClick={logout}>
+        //   Logout
+        // </Link>
+        <a href="/">Login</a>
+        // <Link to="/">Login</Link>
+      )}
+    </div>
+
+    // <Navbar expand="lg" >
+    //   <Container>
+    //     {/* <Navbar.Brand href="#">{title || 'Gen-001'}</Navbar.Brand> */}
+    //     <Navbar.Brand href="#">
+    //       {user ? `Welcome, ${user.userId}` : 'Welcome'}
+    //     </Navbar.Brand>
+    //     {/* <Nav >
+    //             </Nav> */}
+    //     <Nav className="me-auto">
+    //       <Nav.Link href="#">
+    //         {user && (
+    //           <Nav.Link href="#" onClick={logout}>
+    //             Logout
+    //           </Nav.Link>
+    //         )}
+    //       </Nav.Link>
+    //       <Nav.Link href="#">
+    //         <Clock />
+    //       </Nav.Link>
+    //     </Nav>
+    //     {/* <Row lg={12}>
+    //                 <Col md={4}> Gen-001 </Col>
+
+    //                 <Col md={4}> Sign On </Col>
+
+    //                 <Col md={4}><Clock /> </Col>
+    //             </Row> */}
+    //   </Container>
+    // </Navbar>
 
     //     <Navbar expand="lg" className="bg-body-tertiary">
     //     <Container>

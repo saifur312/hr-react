@@ -68,7 +68,7 @@ function LoginNoFormik() {
           onSubmit={handleSubmit}
           action="employee-login"
           method="POST"
-          style={{ backgroundColor: '#323234', color: '#fff' }}
+          // style={{ backgroundColor: '#323234', color: '#fff' }}
         >
           <Form.Group as={Row} className="p-4" controlId="userId">
             <Form.Label column sm={4}>
@@ -100,7 +100,7 @@ function LoginNoFormik() {
           </Form.Group>
 
           <Row>
-            <Col md={6}>
+            <Col md={4}>
               <Button
                 className="justify-content-md-start m-4"
                 variant="primary"
@@ -110,7 +110,7 @@ function LoginNoFormik() {
               </Button>
             </Col>
 
-            <Col md={6}>
+            <Col md={8}>
               <Button
                 className="justify-content-md-end m-4"
                 variant="primary"

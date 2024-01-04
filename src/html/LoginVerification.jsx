@@ -7,8 +7,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useAppContext } from '../utils/AppContext';
+import { useAuthContext } from '../utils/AuthContext';
 
 function LoginVerification() {
+  const { setSidebarData } = useAppContext();
+  const { login } = useAuthContext();
+
   const [loginCode, setLoginCode] = useState('');
   const [message, setMessage] = useState('');
   //const [validated, setValidated] = useState(false);
@@ -30,10 +35,27 @@ function LoginVerification() {
   //   setValidated(true);
   // };
 
+  const fetchOperatorFunctions = async (operatorId) => {
+    console.log('operatorId', operatorId, typeof operatorId);
+
+    try {
+      const response = await fetch(
+        'http://localhost:8080/operator-functions?operatorId=' +
+          parseInt(operatorId)
+        // `http://localhost:8080/operator-functions?${operatorId}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setSidebarData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   let handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      let res = await fetch('http://localhost:8080/verify-login', {
+      const response = await fetch('http://localhost:8080/verify-login', {
         method: 'POST',
         body: JSON.stringify({
           userId: params.id,
@@ -46,28 +68,35 @@ function LoginVerification() {
 
       // console.log("Test Response " + JSON.stringify(res.data));
       //console.log("Test Response " + await res.text());
-      console.log('Res Status' + res.status);
-      console.log('Test Res Json ' + res);
+      console.log('Res Status' + response.status);
+      console.log('Test Res Json ' + response);
 
       // let resJson = await res.json();
 
       //let resJson = await JSON.stringify(res);
 
-      isVerified = await res.text();
+      const data = await response.json();
 
       //isVerified = await res.text().then(f=>f)
-      console.dir(res);
+      console.dir(response);
       //console.log("set value isVerified" + isVerified);
 
-      if (res.status === 200) {
+      if (response.status === 200) {
+        console.log('Verified ' + data.verified);
+        isVerified = data.verified;
         setLoginCode('');
         setMessage('Code entered successfully');
       } else {
         setMessage('Some error occured');
       }
 
-      if (isVerified === 'true') navigate('/profile/' + params.id);
-      else setMessage('Code does not matched !!');
+      if (isVerified === true) {
+        navigate('/profile/' + params.id);
+        //const functionList = ['Add System', 'Add Sub System', 'Add Function'];
+        login(params.id);
+        //setSidebarData(functionList);
+        fetchOperatorFunctions(params.id);
+      } else setMessage('Code does not matched !!');
     } catch (err) {
       console.log(err);
     }
@@ -78,7 +107,7 @@ function LoginVerification() {
     // .then((response) => response.json())
     // .then((data) => setData(data)) );
 
-    console.log('verified ' + isVerified);
+    //console.log('verified ' + isVerified);
   };
 
   return (
@@ -129,13 +158,15 @@ function LoginVerification() {
                 </Col>
               </Row>
             </Form>
-
-            <div style={{ color: 'red' }}> {message} </div>
+            {/* color: '#970101' */}
+            <h3 style={{ color: '#f00606', position: 'absolute', bottom: '0' }}>
+              {message}
+            </h3>
           </Col>
         </Row>
       </Container>
 
-      <Link to="/Login"> Login </Link>
+      {/* <Link to="/Login"> Login </Link> */}
 
       {/* <Link to={"./Login"}>
                 Login

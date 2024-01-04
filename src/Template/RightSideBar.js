@@ -1,17 +1,14 @@
 import React from 'react';
-import {
-    Link
-} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import "./../App.css";
-
+import './../App.css';
 
 const RightSideBar = () => {
-    return (
-        <aside className="sidebar-right">
-            <nav>
-                <ul>
-                    <li> <Link to="/Add employee">Add Employee</Link> </li>
+  return (
+    <aside className="sidebar-right">
+      <nav>
+        <ul>
+          {/* <li> <Link to="/Add employee">Add Employee</Link> </li>
                     <li> <Link to="/Inquire employee">Inquire employee</Link> </li>
                     <li> <Link to="/Add Department">Add Department </Link> </li>
                     <li> <Link to="/DepartmentList">Department List </Link> </li>
@@ -29,11 +26,12 @@ const RightSideBar = () => {
                     <li> <Link to="/Deduction List">Deduction List </Link> </li>
                     <li> <Link to="/Monthly Salary">Monthly Salary </Link> </li>
                     <li> <Link to="/Total Salary ">Total Salary </Link> </li>
-                    <li> <Link to="/Total Salary Chart">Total Salary Chart</Link> </li>
-                </ul>
-            </nav>
-        </aside>
-    );
-}
+                    <li> <Link to="/Total Salary Chart">Total Salary Chart
+                    </Link> </li> */}
+        </ul>
+      </nav>
+    </aside>
+  );
+};
 
 export default RightSideBar;

@@ -5,15 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { TitleProvider } from './utils/TitleContext';
+import { AppProvider } from './utils/AppContext';
+import { AuthProvider } from './utils/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <TitleProvider>
-        <App />
-      </TitleProvider>
+      <AuthProvider>
+        <AppProvider>
+          <App />
+        </AppProvider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>
   //document.getElementById('root')

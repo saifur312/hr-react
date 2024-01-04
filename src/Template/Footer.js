@@ -8,11 +8,14 @@ const Footer = () => {
   return (
     // <footer className="footer"> Footer Copyright test</footer>
 
-    <Navbar expand="lg" bg="dark" variant="dark" className="fixed-bottom">
-      <Container>
-        <Navbar.Brand href="#">Copyright </Navbar.Brand>
-      </Container>
-    </Navbar>
+    // <Navbar expand="lg" className="fixed-bottom">
+    //   <Container>
+    //     <Navbar.Brand href="#">Copyright </Navbar.Brand>
+    //   </Container>
+    // </Navbar>
+    <div>
+      <h5> Copyright</h5>
+    </div>
   );
 };
 

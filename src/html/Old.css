@@ -1,0 +1,121 @@
+* {
+  /* background: #979191; 
+  color: #fff; */
+}
+
+.app-body {
+  padding: 10px;
+  background: #f5f5f5;
+  border: solid thin blue;
+  width: auto;
+  height: auto;
+}
+
+/** top navbar **/
+.navbar-top {
+  /* float: left; */
+  /* background-color: #17241d;
+  color: #fff; */
+  /* padding: 5px 5px;
+  display: inline-block; */
+  width: 100%;
+  height: 65px;
+  text-align: center;
+}
+
+/* .navbar-top > div {
+  float: left;
+  width: 33%;
+} */
+
+.navbar-top > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbar-top ul li {
+  display: inline;
+}
+
+.navbar-top > ul > li a {
+  padding: 8px;
+  background-color: #dddddd;
+}
+
+/** container **/
+/* .container {
+  width: 70%;
+  float: left;
+  text-align: center;
+  margin-bottom: 15px;
+  border: solid thin green;
+} */
+
+/** footer **/
+.footer {
+  width: 100%;
+  /* background-color: #0f0f13; */
+  color: #f5e6e6;
+  float: left;
+  text-align: center;
+  border: solid thin purple;
+}
+
+/** left sidebar **/
+.sidebar-left {
+  width: 15%;
+  border-right: 1px solid #eee;
+  /* background-color: #cfdddf; */
+  float: left;
+  color: rgb(29, 21, 21);
+  /* background-color: #5c636a; */
+  font-size: 1.2rem;
+  border: solid thin black;
+}
+
+/** right sidebar **/
+.sidebar-right {
+  width: 15%;
+  border-left: 1px solid #eee;
+  /* background-color: #c8e0fc; */
+  /* background-color: #5c636a; */
+  float: right;
+  /* color: rgb(12, 12, 27); */
+  font-size: 1.2rem;
+  /* padding-top: 15px; */
+  border: solid thin pink;
+}
+
+.sidebar-left ul,
+.sidebar-right ul {
+  /* top | right | bottom | left */
+  padding: 5px 0 0 0;
+}
+
+.sidebar-left ul li,
+.sidebar-right ul li {
+  list-style-type: none;
+  /* padding-bottom: 5px; */
+  /* top | right | bottom | left */
+  padding: 5px 0 5px 15px;
+}
+
+.sidebar-left ul li:hover,
+.sidebar-right ul li:hover {
+  /* background-color: #686d72; */
+  background-color: #f0f1f3;
+}
+
+.sidebar-left ul a,
+.sidebar-right ul li a {
+  text-decoration: none;
+  color: #000000;
+  /* padding-left: 15px; */
+}
+
+.react-datepicker-wrapper {
+  width: 100%; /* Adjust the width as needed */
+  max-width: 100%; /* Adjust the max-width as needed */
+}
