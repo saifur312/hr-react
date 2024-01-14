@@ -70,17 +70,7 @@ function UpdateJobTitle() {
       )} */}
 
       <Col md={10}>
-        <form
-          onSubmit={handleSubmit}
-          method="POST"
-          className="card-body label"
-          style={{
-            backgroundColor: '#323234',
-            color: '#fff',
-            paddingBottom: '30px',
-            marginBottom: '30px',
-          }}
-        >
+        <form onSubmit={handleSubmit} method="POST" className="form">
           <div className="row">
             <div className="form-group row col-lg-12 mt-4">
               <label htmlFor="jobId" className="col-form-label col-lg-4">

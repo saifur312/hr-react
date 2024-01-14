@@ -104,20 +104,14 @@ function AddDepartment() {
 
   return (
     <Row className="justify-content-md-center m-4">
-      {/* <Col sm={1}>sm=8</Col> */}
+      <h2 className="content-title">Add Department</h2>
       {successMessage && <h3 style={{ color: 'green' }}>{successMessage}</h3>}
       <Col md={10}>
         <form
           onSubmit={handleSubmit}
           action="department-add-save"
           method="POST"
-          className="card-body label"
-          style={{
-            backgroundColor: '#323234',
-            color: '#fff',
-            paddingBottom: '30px',
-            marginBottom: '30px',
-          }}
+          className="form"
         >
           <div className="row">
             <div className="form-group row col-lg-12 mt-4">
@@ -239,7 +233,7 @@ function AddDepartment() {
                 ></input>
               </div>
             </div>
-            <div className="form-group row col-lg-12 mt-4">
+            {/* <div className="form-group row col-lg-12 mt-4">
               <label htmlFor="startDateStr" className="col-form-label col-lg-4">
                 <span className="float-left">Department Start Date</span>
                 <span className="float-right">:</span>
@@ -250,7 +244,7 @@ function AddDepartment() {
                   onChange={handleDateChange}
                 />
               </div>
-            </div>
+            </div> */}
             <div className="form-group row col-lg-12 mt-4">
               <label htmlFor="endDateStr" className="col-form-label col-lg-4">
                 <span className="float-left">Department End Date</span>

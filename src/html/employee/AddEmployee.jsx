@@ -217,21 +217,18 @@ function AddEmployee() {
     }
   };
 
+  const handleCancel = () => {};
+
   return (
     <Row className="justify-content-md-center m-4">
       {/* <Col sm={1}>sm=8</Col> */}
+      <h2 className="content-title">Add Employee</h2>
       <Col md={10}>
         <form
           onSubmit={handleSubmit}
           action="employee-add-save"
           method="POST"
-          className="card-body label"
-          style={{
-            backgroundColor: '#323234',
-            color: '#fff',
-            paddingBottom: '30px',
-            marginBottom: '30px',
-          }}
+          className="form"
         >
           <div className="row">
             <div className="form-group row col-lg-12 mt-4">
@@ -989,7 +986,10 @@ function AddEmployee() {
               </div>
             </div>
             <div className="form-group col-lg-12 text-center mt-lg-4">
-              <button className="btn btn-danger btn-lg col-lg-2 mr-5 col-sm-5 col-xs-3">
+              <button
+                className="btn btn-danger btn-lg col-lg-2 mr-5 col-sm-5 col-xs-3"
+                onClick={handleCancel}
+              >
                 Cancel
               </button>
               <button

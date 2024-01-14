@@ -117,14 +117,10 @@ const OperatorFunction = () => {
 
   return (
     <Row className="justify-content-md-center m-4">
+      <h2 className="content-title">Add Employee's Functions</h2>
       <h3> {message} </h3>
       <Col md={10}>
-        <Form
-          onSubmit={handleSubmit}
-          method="POST"
-          className="card-body label"
-          style={{ backgroundColor: '#323234', color: '#fff' }}
-        >
+        <Form onSubmit={handleSubmit} method="POST" className="form">
           <div className="row">
             <div className="form-group row col-lg-12 mt-4">
               <label htmlFor="operatorId" className="col-form-label col-lg-4">

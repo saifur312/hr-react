@@ -84,19 +84,14 @@ function AddEducation() {
 
   return (
     <Row className="justify-content-md-center m-4">
+      <h2 className="content-title">Add Employee's Education</h2>
       {successMessage && <h3 style={{ color: 'green' }}>{successMessage}</h3>}
       <Col md={10}>
         <form
           onSubmit={handleSubmit}
           action="leave-add-save"
           method="POST"
-          className="card-body label"
-          style={{
-            backgroundColor: '#323234',
-            color: '#fff',
-            paddingBottom: '30px',
-            marginBottom: '30px',
-          }}
+          className="form"
         >
           <div className="row">
             <div className="form-group row col-lg-12 mt-4">

@@ -6,6 +6,7 @@ import Chart from 'chart.js/auto';
 
 const ChartController = () => {
   const [monthlySalaryData, setMonthlySalaryData] = useState([]);
+
   useEffect(() => {
     const fetchMonthlySalaryData = async () => {
       try {

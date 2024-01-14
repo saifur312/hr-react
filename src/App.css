@@ -77,6 +77,12 @@ Main content
   color: #02098a;
 }
 
+.content-title {
+  color: #157347;
+  text-align: center;
+  /* text-decoration: 'underline', */
+}
+
 /** ============================================= 
 Footer
 ================================================= **/
@@ -86,10 +92,23 @@ Footer
   min-height: 7vh;
 }
 
+/*** ***/
+.form {
+  color: #fff;
+  font-weight: bolder;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
 /** ============================================= 
 customize/override module/library css
 ================================================= **/
 .react-datepicker-wrapper {
   width: 100%; /* Adjust the width as needed */
   max-width: 100%; /* Adjust the max-width as needed */
+}
+
+/* bootstrap css override */
+.table {
+  --bs-table-bg: #ffffff00 !important;
 }

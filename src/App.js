@@ -135,7 +135,7 @@ function App() {
           <Col md={12} lg={2} className="side-nav">
             <LeftSidebar />
           </Col>
-          <Col md={12} lg={8} className="content">
+          <Col md={12} lg={10} className="content">
             <div>
               {/* <h1> Our code will be in this section</h1> */}
 
@@ -178,7 +178,7 @@ function App() {
                   }
                 />
                 <Route path="/Add Department" element={<AddDepartment />} />
-                <Route path="/DepartmentList" element={<DepartmentList />} />
+                <Route path="/Department List" element={<DepartmentList />} />
                 <Route path="/Add Section" element={<AddSection />} />
                 <Route path="/Section List" element={<SectionList />} />
                 <Route path="/Add Bank info" element={<AddBankInfo />} />
@@ -206,8 +206,14 @@ function App() {
                 <Route path="/Dependent List" element={<DependentList />} />
                 <Route path="/Add Address" element={<AddAddress />} />
                 <Route path="/Address List" element={<AddressList />} />
-                <Route path="/Show Charts" element={<BarChart />} />
-                <Route path="/Show Line Charts" element={<LineChart />} />
+                <Route
+                  path="/Montlhy Salary Bar Chart"
+                  element={<BarChart />}
+                />
+                <Route
+                  path="/Montlhy Salary Line Chart"
+                  element={<LineChart />}
+                />
                 <Route path="/Add System" element={<AddSystem />} />
                 <Route path="/Add Sub System" element={<AddSubSystem />} />
                 <Route path="/Add Function" element={<AddFunction />} />
@@ -272,9 +278,9 @@ function App() {
               </Routes>
             </div>
           </Col>
-          <Col md={12} lg={2}>
+          {/* <Col md={12} lg={2}>
             <RightSideBar />
-          </Col>
+          </Col> */}
         </Row>
         <Row className="footer">
           <Col>

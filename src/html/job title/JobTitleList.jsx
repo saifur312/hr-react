@@ -28,19 +28,20 @@ function JobTitleList() {
 
   return (
     <div
-      className="col-12 card bg-light mx-auto"
+      className="col-12 mx-auto"
       style={{ padding: '3% 8%', marginTop: '6px' }}
     >
+      <h2 className="content-title">Job Titles</h2>
       <div className="form-group row col-lg-12">
         <table width="100%" className="table table-hover table-borderless">
-          <tbody className="text-center">
+          <tbody>
             <tr className="table-header">
               <th scope="col">SL</th>
               <th scope="col">Title</th>
               <th scope="col">Desc.</th>
               <th scope="col">Responsibility</th>
               <th scope="col">Status</th>
-              <th scope="col">Action</th>
+              {/* <th scope="col">Action</th> */}
             </tr>
 
             {jobTitleList.map((jobTitle, index) => {
@@ -51,7 +52,7 @@ function JobTitleList() {
                   <td> {jobTitle.description} </td>
                   <td> {jobTitle.responsibilty} </td>
                   <td> {jobTitle.staus} </td>
-                  <td>
+                  {/* <td>
                     <button
                       className="btn btn-success btn-sm"
                       // onClick={() => handleClick(jobTitle)}
@@ -63,7 +64,7 @@ function JobTitleList() {
                     >
                       Update
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}

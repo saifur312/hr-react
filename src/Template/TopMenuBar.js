@@ -8,9 +8,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import './../App.css';
 import { useAuthContext } from '../utils/AuthContext';
 import { Link } from 'react-router-dom';
+import { useAppContext } from '../utils/AppContext';
 
 const TopMenuBar = () => {
   const { user, logout } = useAuthContext();
+  const { title } = useAppContext();
   //const { title } = useTitle();
 
   // const currentDateTime = React.useState({
@@ -44,6 +46,8 @@ const TopMenuBar = () => {
         <a href="/">Login</a>
         // <Link to="/">Login</Link>
       )}
+
+      <a href="">{title || 'Gen-001'}</a>
     </div>
 
     // <Navbar expand="lg" >

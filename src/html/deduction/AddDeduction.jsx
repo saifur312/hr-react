@@ -86,13 +86,14 @@ function AddDeduction() {
 
   return (
     <Row className="justify-content-md-center m-4">
+      <h2 className="content-title">Add Employee's Salary Deduction</h2>
       {successMessage && <h3 style={{ color: 'green' }}>{successMessage}</h3>}
       <Col md={10}>
         <Form
           onSubmit={handleSubmit}
           action=""
           method="POST"
-          className="card-body label"
+          className="form"
           style={{ backgroundColor: '#323234', color: '#fff' }}
         >
           <div className="row">

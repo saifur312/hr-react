@@ -41,13 +41,9 @@ function EducationList() {
   };
 
   return (
-    <div className="col-12 card bg-light mx-auto" style={{ marginTop: '6px' }}>
-      <form
-        onSubmit={handleSubmit}
-        method="POST"
-        className="card-body label"
-        style={{ backgroundColor: '#323234', color: '#fff' }}
-      >
+    <div className="col-12 mx-auto" style={{ marginTop: '6px' }}>
+      <h2 className="content-title">Employee's Educations</h2>
+      <form onSubmit={handleSubmit} method="POST" className="form">
         <div className="form-group row col-lg-12 mt-4">
           <label htmlFor="employeeId" className="col-form-label col-lg-4">
             <span className="float-left">Select Employee</span>
@@ -70,16 +66,15 @@ function EducationList() {
           </div>
 
           <div className="col-lg-2">
-            <button
-              type="submit"
-              className="btn btn-success btn-lg col-lg-12"
-            ></button>
+            <button type="submit" className="btn btn-success btn-lg col-lg-12">
+              Search
+            </button>
           </div>
         </div>
       </form>
       <div className="form-group row col-lg-12 m-0 mt-4">
         <table width="100%" className="table table-hover table-borderless">
-          <tbody className="text-center">
+          <tbody>
             <tr className="table-header">
               <th scope="col">SL</th>
               <th scope="col">Employee ID</th>
