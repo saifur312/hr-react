@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../utils/AppContext';
 
@@ -7,7 +7,15 @@ import { Navbar } from 'react-bootstrap';
 
 const LeftSidebar = () => {
   const { sidebarData } = useAppContext();
+  const topRef = useRef(null);
 
+  const scrollToTop = () => {
+    if (topRef.current) {
+      //topRef.current.scrollIntoView({ behavior: 'smooth' });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
   return (
     // <aside>
     //   <a href="/AddSystem">Add System</a>
@@ -55,6 +63,8 @@ const LeftSidebar = () => {
     //   <a href="/Show Charts">Show Charts </a>
 
     //   <a href="/Show Line Charts">Show Line Charts </a>
+
+    //   <a href="/Monthly Salary">Monthly Salary </a>
     // </aside>
 
     // <aside>
@@ -74,10 +84,18 @@ const LeftSidebar = () => {
       {sidebarData &&
         sidebarData.map((fun) => (
           //  <a href={'/' + fun}>{fun}</a>
-          <Link key={fun.functionName} to={'/' + fun.route}>
+          <Link
+            key={fun.functionName}
+            to={'/' + fun.route}
+            onClick={scrollToTop}
+          >
             {fun.functionName}
           </Link>
         ))}
+      <Link to="Monthly Salary" onClick={scrollToTop}>
+        MonthlySalary
+      </Link>
+      <div ref={topRef}></div>
     </aside>
   );
 };

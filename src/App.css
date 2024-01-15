@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /** ============================================= 
 Top Menu bar 
 ================================================= **/
@@ -32,18 +36,15 @@ Left sidebar
 
 .side-nav {
   padding: 0px !important;
-  /* background-color: whitesmoke; */
-  /** 
-  position: fixed;
+  background-color: whitesmoke;
   height: 100%;
   z-index: 1;
-  background-color: #111;
+  /* background-color: #111; */
   overflow-x: hidden;
-  width: 160px; 
+  /* width: 160px; */
   top: 0;
   left: 0;
   padding-top: 20px;
-  **/
 }
 
 .side-nav a {
@@ -79,6 +80,7 @@ Main content
 
 .content-title {
   color: #157347;
+
   text-align: center;
   /* text-decoration: 'underline', */
 }
