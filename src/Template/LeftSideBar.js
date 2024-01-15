@@ -92,6 +92,9 @@ const LeftSidebar = () => {
             {fun.functionName}
           </Link>
         ))}
+      {/* <Link to="Monthly Salary" onClick={scrollToTop}>
+        MonthlySalary
+      </Link> */}
       <Link to="Monthly Salary" onClick={scrollToTop}>
         MonthlySalary
       </Link>

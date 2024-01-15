@@ -50,8 +50,8 @@ function JobTitleList() {
                   <td> {index + 1} </td>
                   <td> {jobTitle.title} </td>
                   <td> {jobTitle.description} </td>
-                  <td> {jobTitle.responsibilty} </td>
-                  <td> {jobTitle.staus} </td>
+                  <td> {jobTitle.responsibility} </td>
+                  <td> {jobTitle.status ? 'Active' : 'InActive'} </td>
                   {/* <td>
                     <button
                       className="btn btn-success btn-sm"

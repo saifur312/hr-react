@@ -1,4 +1,5 @@
 export const monthlySalaryData = [
+  // section accounts
   {
     id: 1,
     sectionName: 'Accounts',
@@ -195,7 +196,7 @@ export const monthlySalaryData = [
 
   // section Purchase
   {
-    id: 4,
+    id: 5,
     sectionName: 'Admin',
     basic: null,
     allowance: null,
@@ -250,7 +251,7 @@ export const monthlySalaryData = [
   },
   // section Purchase
   {
-    id: 5,
+    id: 6,
     sectionName: 'Medicine',
     basic: null,
     allowance: null,

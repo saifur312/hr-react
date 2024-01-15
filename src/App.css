@@ -38,8 +38,8 @@ Left sidebar
   padding: 0px !important;
   background-color: whitesmoke;
   height: 100%;
-  z-index: 1;
-  /* background-color: #111; */
+  /* z-index: 1;
+  background-color: #111; */
   overflow-x: hidden;
   /* width: 160px; */
   top: 0;

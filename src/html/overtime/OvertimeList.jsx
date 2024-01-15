@@ -85,7 +85,7 @@ function OvertimeList() {
               <th scope="col">Start Time</th>
               <th scope="col">End Time</th>
               <th scope="col">Total Hours</th>
-              <th scope="col">Status</th>
+              {/* <th scope="col">Status</th> */}
             </tr>
 
             {overtimeList.map((overtime, index) => {
@@ -98,7 +98,7 @@ function OvertimeList() {
                   <td> {overtime.startTime} </td>
                   <td> {overtime.endTime} </td>
                   <td> {overtime.totalHours} </td>
-                  <td> {overtime.status} </td>
+                  {/* <td> {overtime.status} </td> */}
                 </tr>
               );
             })}

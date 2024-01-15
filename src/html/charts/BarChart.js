@@ -47,8 +47,8 @@ const BarChart = () => {
       );
       const data = await response.json();
       setMonthlySalaryData(data);
-      console.log('Full 2D Map ' + monthlySalaryData);
-      console.log('Only keys ' + monthlySalaryData.keySet());
+      // console.log('Full 2D Map ' + monthlySalaryData);
+      // console.log('Only keys ' + monthlySalaryData.keySet());
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -143,7 +143,9 @@ const BarChart = () => {
             >
               <option value="0">Select One</option>
               {months.map((month, index) => (
-                <option value={index + 1}> {month} </option>
+                <option key={index + 1} value={index + 1}>
+                  {month}
+                </option>
               ))}
             </select>
           </div>

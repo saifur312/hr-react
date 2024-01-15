@@ -61,6 +61,7 @@ import { useAuthContext } from './utils/AuthContext';
 import { routes } from './AppRoutes';
 import { Col, Container, Row } from 'react-bootstrap';
 import MonthlySalary from './html/salary/MonthlySalary';
+import MonthlySalary2 from './html/salary/MonthlySalary2';
 
 /** protect a single route from unauthenticated access ***/
 function ProtectedRoute({ children }) {
@@ -207,7 +208,8 @@ function App() {
                 <Route path="/Dependent List" element={<DependentList />} />
                 <Route path="/Add Address" element={<AddAddress />} />
                 <Route path="/Address List" element={<AddressList />} />
-                <Route path="/Monthly Salary" element={<MonthlySalary />} />
+                <Route path="/Monthly Salary" element={<MonthlySalary2 />} />
+
                 <Route
                   path="/Monthly Salary Bar Chart"
                   element={<BarChart />}

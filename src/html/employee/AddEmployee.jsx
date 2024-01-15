@@ -59,11 +59,12 @@ function AddEmployee() {
   const [status, setStatus] = useState('');
   const [leaveBalance, setLeaveBalance] = useState('');
   //const [ageYear, setAgeYear] = useState('');
-  //const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   const [department, setDepartment] = useState([]);
   const [sections, setSections] = useState([]);
 
+  const employeeForm = document.getElementById('employeeForm');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -80,8 +81,10 @@ function AddEmployee() {
     departmentList();
   }, [setDepartment]);
 
-  let sectionList = async () => {
-    console.log('SectionList function call success...!!  ' + departmentId);
+  let sectionList = async (selectedDepartmentId) => {
+    console.log(
+      'SectionList function call success...!!  ' + selectedDepartmentId
+    );
     // const response = await fetch("http://localhost:8080/section-list-deptarmentwise/" + departmentId);
 
     // console.log("Content Type " + response.headers);
@@ -92,7 +95,7 @@ function AddEmployee() {
     await fetch('http://localhost:8080/section-list-deptarmentwise', {
       method: 'POST',
       body: JSON.stringify({
-        departmentId: departmentId,
+        departmentId: selectedDepartmentId,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -208,10 +211,17 @@ function AddEmployee() {
         headers: {
           'Content-Type': 'application/json',
         },
-      }).then((r) => r);
+      }).then((response) => {
+        if (response.ok) {
+          setMessage('Employee added successfully');
+          navigate('/Add employee');
+          employeeForm.reset();
+        } else {
+          setMessage('Error to add employee');
+        }
+      });
 
-      console.log('After parsing ' + dobStr, appliacationDateStr);
-      navigate('/Add employee');
+      //console.log('After parsing ' + dobStr, appliacationDateStr);
     } catch (err) {
       console.log(err);
     }
@@ -223,8 +233,10 @@ function AddEmployee() {
     <Row className="justify-content-md-center m-4">
       {/* <Col sm={1}>sm=8</Col> */}
       <h2 className="content-title">Add Employee</h2>
+      <h3 style={{ color: 'green' }}>{message}</h3>
       <Col md={10}>
         <form
+          id="employeeForm"
           onSubmit={handleSubmit}
           action="employee-add-save"
           method="POST"
@@ -337,7 +349,8 @@ function AddEmployee() {
                   name="departmentId"
                   onChange={(event) => {
                     setDepartmentId(event.target.value);
-                    sectionList();
+                    // sectionList(); // this can not get the updated state value of departmentId
+                    sectionList(event.target.value);
                   }}
                 >
                   <option value="0">Select One</option>
@@ -761,6 +774,7 @@ function AddEmployee() {
                   className="form-control"
                   id="finalSettleDateStr"
                   name="finalSettleDateStr"
+                  selected={finalSettleDateStr}
                   onChange={(event) => setFinalSettleDateStr(event)}
                 />
               </div>
@@ -915,7 +929,7 @@ function AddEmployee() {
                 ></input>
               </div>
             </div>
-            <div className="form-group row col-lg-12 mt-4">
+            {/* <div className="form-group row col-lg-12 mt-4">
               <label htmlFor="filler1" className="col-form-label col-lg-4">
                 <span className="float-left">Filler-1</span>
                 <span className="float-right">:</span>{' '}
@@ -984,11 +998,12 @@ function AddEmployee() {
                   name="filler5"
                 ></input>
               </div>
-            </div>
+            </div> */}
             <div className="form-group col-lg-12 text-center mt-lg-4">
               <button
+                type="button"
                 className="btn btn-danger btn-lg col-lg-2 mr-5 col-sm-5 col-xs-3"
-                onClick={handleCancel}
+                onClick={() => document.getElementById('employeeForm').reset()}
               >
                 Cancel
               </button>

@@ -91,7 +91,8 @@ function LoginVerification() {
       }
 
       if (isVerified === true) {
-        navigate('/profile/' + params.id);
+        //navigate('/profile/' + params.id);
+        navigate('/Monthly Salary Bar Chart');
         //const functionList = ['Add System', 'Add Sub System', 'Add Function'];
         login(params.id);
         //setSidebarData(functionList);
