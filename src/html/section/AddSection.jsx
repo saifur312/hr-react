@@ -4,6 +4,7 @@ import './../../App.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function AddSection() {
   //const [sectionId, setSectionId] = useState('');
@@ -55,7 +56,17 @@ function AddSection() {
       }).then((r) => r);
 
       navigate('/Add Section');
+      Swal.fire({
+        title: 'Section added Success..!!',
+        icon: 'success',
+        confirmButtonText: 'Continue',
+      });
     } catch (err) {
+      Swal.fire({
+        title: 'Section added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log(err);
     }
   };

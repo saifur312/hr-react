@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function AddDeduction() {
   const [employees, setEmployees] = useState([]);
@@ -78,8 +79,19 @@ function AddDeduction() {
           setWalefareFund('');
           setOtherDeductions('');
         }, 100);
+
+        Swal.fire({
+          title: 'Deduction added success...!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
       }
     } catch (error) {
+      Swal.fire({
+        title: 'Deduction added fail...!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.error('Error:', error.message);
     }
   };

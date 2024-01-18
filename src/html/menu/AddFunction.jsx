@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export const AddFunction = () => {
   const [systemId, setSystemId] = useState('');
@@ -90,12 +91,27 @@ export const AddFunction = () => {
         },
       });
       if (response.ok) {
-        setMessage('Function saved successfully...!!');
+        //setMessage('Function saved successfully...!!');
         navigate('', { replace: true });
+        Swal.fire({
+          title: 'Function added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
       } else {
-        setMessage(`Error: ${response.status} - ${response.statusText}`);
+        Swal.fire({
+          title: 'Function added Fail..!!',
+          icon: 'error',
+          confirmButtonText: 'Continue',
+        });
+        //setMessage(`Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
+      Swal.fire({
+        title: 'Function added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log('Error: ' + error.message);
     }
   };

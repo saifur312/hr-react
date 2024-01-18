@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 import './../../App.css';
 
@@ -36,6 +37,11 @@ function LoanList() {
         console.error(`Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
+      Swal.fire({
+        title: 'Error save/fetch data',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.error('Error:', error.message);
     }
   };
@@ -67,7 +73,7 @@ function LoanList() {
 
           <div className="col-lg-2">
             <button type="submit" className="btn btn-success btn-lg col-lg-12">
-              Search{' '}
+              Search
             </button>
           </div>
         </div>
@@ -85,8 +91,8 @@ function LoanList() {
               <th scope="col">Transaction Date</th>
               <th scope="col">Loan End Date</th>
               <th scope="col">Deduction Type</th>
-              <th scope="col">Reamrks</th>
-              <th scope="col">Status</th>
+              {/* <th scope="col">Reamrks</th>
+              <th scope="col">Status</th> */}
             </tr>
 
             {employeeLoan.map((empLoan, index) => {
@@ -100,8 +106,8 @@ function LoanList() {
                   <td> {empLoan.transactionDate} </td>
                   <td> {empLoan.loanEndDate} </td>
                   <td> {empLoan.deductionAmount} </td>
-                  <td> {empLoan.remarks} </td>
-                  <td> {empLoan.status} </td>
+                  {/* <td> {empLoan.remarks} </td>
+                  <td> {empLoan.status} </td> */}
                 </tr>
               );
             })}

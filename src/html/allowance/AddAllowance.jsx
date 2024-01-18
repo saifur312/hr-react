@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import { Typeahead } from 'react-bootstrap-typeahead'; // ES2015
 // var Typeahead = require('react-bootstrap-typeahead').Typeahead;
@@ -93,10 +94,25 @@ function AddAllowance() {
         setMessage('Data saved successfull');
         // Navigate to the Employee Details route with the data as state
         navigate('/Add Allowance');
+        Swal.fire({
+          title: 'Allowance added success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
       } else {
+        Swal.fire({
+          title: 'Allowance added Fail..!!',
+          icon: 'error',
+          confirmButtonText: 'Continue',
+        });
         console.error(`Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
+      Swal.fire({
+        title: 'Error save/fetch data',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.error('Error:', error.message);
     }
   };

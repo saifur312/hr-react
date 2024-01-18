@@ -95,9 +95,9 @@ const LeftSidebar = () => {
       {/* <Link to="Monthly Salary" onClick={scrollToTop}>
         MonthlySalary
       </Link> */}
-      <Link to="Monthly Salary" onClick={scrollToTop}>
+      {/* <Link to="Monthly Salary" onClick={scrollToTop}>
         MonthlySalary
-      </Link>
+      </Link> */}
       <div ref={topRef}></div>
     </aside>
   );

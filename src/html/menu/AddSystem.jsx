@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export const AddSystem = () => {
   //const [systemId, setSystemId] = useState('');
@@ -26,12 +27,27 @@ export const AddSystem = () => {
         //const data = await response.json();
         setMessage('Data saved successfull');
         // Navigate to the Employee Details route with the data as state
-        navigate('/AddSystem');
+        navigate('/Add System');
+        Swal.fire({
+          title: 'System added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
       } else {
+        Swal.fire({
+          title: 'System added Fail..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
         //console.error(`Error: ${response.status} - ${response.statusText}`);
-        setMessage(`Error: ${response.status} - ${response.statusText}`);
+        //setMessage(`Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
+      Swal.fire({
+        title: 'System added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.error('Error:', error.message);
     }
   };

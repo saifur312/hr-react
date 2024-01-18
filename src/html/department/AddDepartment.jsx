@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Swal from 'sweetalert2';
 
 //import { format } from 'date-fns';
 
@@ -96,8 +97,24 @@ function AddDepartment() {
           setTotalEmployee('');
           setSelectedDate(null);
         }, 100);
+        Swal.fire({
+          title: 'Department added success!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
+      } else {
+        Swal.fire({
+          title: 'Department added fail!',
+          icon: 'error',
+          confirmButtonText: 'Continue',
+        });
       }
     } catch (err) {
+      Swal.fire({
+        title: 'Department added fail!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log(err);
     }
   };

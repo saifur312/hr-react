@@ -4,6 +4,7 @@ import './../../App.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function AddJobTitle() {
   const navigate = useNavigate();
@@ -51,8 +52,18 @@ function AddJobTitle() {
           setResponsibility('');
           setStatus('');
         }, 100);
+        Swal.fire({
+          title: 'Job Title added Success!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
       }
     } catch (err) {
+      Swal.fire({
+        title: 'Job Title added Failed!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log(err);
     }
   };

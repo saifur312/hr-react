@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 import { dateFormatter } from '../../utils/DateFromatter';
+import Swal from 'sweetalert2';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -66,7 +67,13 @@ const AddNominee = () => {
       }).then((r) => r);
 
       if (response.ok) {
-        setSuccessMessage('Nominee  added successfully!');
+        //setSuccessMessage('Nominee  added successfully!');
+
+        Swal.fire({
+          title: 'Nominee added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
         // Use setTimeout to delay the navigation log
         setTimeout(() => {
           navigate('', { replace: true });
@@ -82,6 +89,11 @@ const AddNominee = () => {
         }, 100);
       }
     } catch (err) {
+      Swal.fire({
+        title: 'Nominee added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log(err);
     }
   };

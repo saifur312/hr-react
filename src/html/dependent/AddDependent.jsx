@@ -3,6 +3,7 @@ import './../../App.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const AddDependent = () => {
   const navigate = useNavigate();
@@ -52,10 +53,14 @@ const AddDependent = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }).then((r) => r);
-
+      });
       if (response.ok) {
-        setSuccessMessage('Dependent  added successfully!');
+        // setSuccessMessage('Dependent  added successfully!');
+        Swal.fire({
+          title: 'Leave added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
         // Use setTimeout to delay the navigation log
         setTimeout(() => {
           navigate('', { replace: true });

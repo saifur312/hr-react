@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 import { dateFormatter, timeFormatter } from '../../utils/DateFromatter';
+import Swal from 'sweetalert2';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -61,6 +62,11 @@ function AddOvertime() {
         // Set a loading state to indicate the redirection is in progress
         //setLoading(true);
 
+        Swal.fire({
+          title: 'Overtime added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
         // Use setTimeout to delay the navigation log
         setTimeout(() => {
           console.log('Redirecting to the same URL...');
@@ -77,6 +83,11 @@ function AddOvertime() {
         }, 100);
       }
     } catch (err) {
+      Swal.fire({
+        title: 'Overtime added fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log(err);
     }
   };

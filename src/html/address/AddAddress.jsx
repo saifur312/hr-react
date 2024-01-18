@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 import { allDistrict } from '../../utils/DistrictBD';
 import { allSubDistrict } from '../../utils/SubDistrict';
+import Swal from 'sweetalert2';
 
 function AddAddress() {
   const [employeeId, setEmployeeId] = useState('');
@@ -86,7 +87,11 @@ function AddAddress() {
         setMessage('Data saved successfull');
         // Navigate to the Employee Details route with the data as state
         navigate('/Add Address');
-
+        Swal.fire({
+          title: 'Address added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
         setEmployeeId('');
         setAddressId('');
         setAddressType('');
@@ -102,9 +107,19 @@ function AddAddress() {
         setApartmentNo('');
         setStatus('');
       } else {
+        Swal.fire({
+          title: 'Address added Fail..!!',
+          icon: 'error',
+          confirmButtonText: 'Continue',
+        });
         console.error(`Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
+      Swal.fire({
+        title: 'Address added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.error('Error:', error.message);
     }
   };

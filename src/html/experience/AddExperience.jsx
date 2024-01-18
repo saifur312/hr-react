@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 import { dateFormatter } from '../../utils/DateFromatter';
+import Swal from 'sweetalert2';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -60,7 +61,12 @@ const AddExperience = () => {
       ).then((r) => r);
 
       if (response.ok) {
-        setSuccessMessage('Experience  added successfully!');
+        //setSuccessMessage('Experience  added successfully!');
+        Swal.fire({
+          title: 'Experience added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
         // Use setTimeout to delay the navigation log
         setTimeout(() => {
           navigate('', { replace: true });
@@ -76,6 +82,11 @@ const AddExperience = () => {
         }, 100);
       }
     } catch (err) {
+      Swal.fire({
+        title: 'Experience added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log(err);
     }
   };

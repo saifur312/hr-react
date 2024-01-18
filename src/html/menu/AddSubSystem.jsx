@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export const AddSubSystem = () => {
   const [systemId, setSystemId] = useState('');
@@ -42,11 +43,26 @@ export const AddSubSystem = () => {
       if (response.ok) {
         setMessage('Subsystem saved successfully..!!');
         navigate('/AddSubSystem');
+        Swal.fire({
+          title: 'Function added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
       } else {
+        Swal.fire({
+          title: 'Function added Fail..!!',
+          icon: 'error',
+          confirmButtonText: 'Continue',
+        });
         console.error(`Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
-      setMessage('Error: ' + error.message);
+      Swal.fire({
+        title: 'Function added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
+      //setMessage('Error: ' + error.message);
       console.log('Error: ' + error.message);
     }
   };

@@ -11,6 +11,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { dateFormatter } from '../../utils/DateFromatter';
 
+import Swal from 'sweetalert2';
+
 function AddLoan() {
   const [employees, setEmployees] = useState([]);
 
@@ -67,10 +69,25 @@ function AddLoan() {
         setMessage('Data saved successfull');
         // Navigate to the Employee Details route with the data as state
         navigate('/Add Loan');
+        Swal.fire({
+          title: 'Loan added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
       } else {
+        Swal.fire({
+          title: 'Loan added Failed..!!',
+          icon: 'error',
+          confirmButtonText: 'Continue',
+        });
         console.error(`Error: ${response.status} - ${response.statusText}`);
       }
     } catch (error) {
+      Swal.fire({
+        title: 'Error save/fetch data',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.error('Error:', error.message);
     }
   };

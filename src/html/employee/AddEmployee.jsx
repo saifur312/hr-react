@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
 import './../../App.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 //import { DatePicker } from "@mui/x-date-pickers";
 // import dayjs from "dayjs";
@@ -213,11 +213,20 @@ function AddEmployee() {
         },
       }).then((response) => {
         if (response.ok) {
-          setMessage('Employee added successfully');
+          // setMessage('Employee added successfully');
           navigate('/Add employee');
+          Swal.fire({
+            title: 'Employee added Success..!!',
+            icon: 'success',
+            confirmButtonText: 'Continue',
+          });
           employeeForm.reset();
         } else {
-          setMessage('Error to add employee');
+          Swal.fire({
+            title: 'Employee added Fail..!!',
+            icon: 'error',
+            confirmButtonText: 'Continue',
+          });
         }
       });
 

@@ -2,6 +2,7 @@ import { Checkbox, FormControlLabel } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Form, Row } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 const OperatorFunction = () => {
   const [employees, setEmployees] = useState([]);
@@ -102,15 +103,30 @@ const OperatorFunction = () => {
       // Handle the response as needed
       //console.log(response);
       if (response.ok) {
-        setMessage('Functions are set to operator successfully');
+        // setMessage('Functions are set to operator successfully');
+        Swal.fire({
+          title: 'Operator Functions added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
         setTimeout(() => {
           navigate('', { replace: true });
           setSelectedFunctions('');
         });
       } else {
+        Swal.fire({
+          title: 'Operator Functions added fail..!!',
+          icon: 'error',
+          confirmButtonText: 'Continue',
+        });
         setMessage('Error: ' + response.text);
       }
     } catch (error) {
+      Swal.fire({
+        title: 'Operator Functions added fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log('Error: ' + error.message);
     }
   };

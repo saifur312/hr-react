@@ -8,6 +8,7 @@ import { dateFormatter } from '../../utils/DateFromatter';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Swal from 'sweetalert2';
 
 function AddEducation() {
   const navigate = useNavigate();
@@ -56,10 +57,15 @@ function AddEducation() {
       }).then((r) => r);
 
       if (response.ok) {
-        setSuccessMessage('Education  added successfully!');
+        // setSuccessMessage('Education  added successfully!');
 
         // Set a loading state to indicate the redirection is in progress
-        setLoading(true);
+        // setLoading(true);
+        Swal.fire({
+          title: 'Education added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
 
         // Use setTimeout to delay the navigation log
         setTimeout(() => {
@@ -78,6 +84,11 @@ function AddEducation() {
         }, 100);
       }
     } catch (err) {
+      Swal.fire({
+        title: 'Education added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log(err);
     }
   };

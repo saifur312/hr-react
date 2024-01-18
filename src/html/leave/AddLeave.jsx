@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 import { dateFormatter } from '../../utils/DateFromatter';
+import Swal from 'sweetalert2';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -57,17 +58,23 @@ function AddLeave() {
       }).then((r) => r);
 
       if (response.ok) {
-        setSuccessMessage('Leave  added successfully!');
+        //setSuccessMessage('Leave  added successfully!');
 
         // Set a loading state to indicate the redirection is in progress
-        setLoading(true);
+        //setLoading(true);
+
+        Swal.fire({
+          title: 'Leave added Success..!!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+        });
 
         // Use setTimeout to delay the navigation log
         setTimeout(() => {
           console.log('Redirecting to the same URL...');
           navigate('', { replace: true });
           // Reset the loading state after navigation
-          setLoading(false);
+          //setLoading(false);
           // Reset form fields
           setEmployeeId('');
           setLeaeveId('');
@@ -79,6 +86,11 @@ function AddLeave() {
         }, 100);
       }
     } catch (err) {
+      Swal.fire({
+        title: 'Leave added Fail..!!',
+        icon: 'error',
+        confirmButtonText: 'Continue',
+      });
       console.log(err);
     }
   };
